@@ -1,5 +1,5 @@
-from names.data import human_data
-from names.helpers import define_parse_string, gen_from_table
+from fantasynames.data import human_data
+from fantasynames.helpers import define_parse_string, gen_from_table
 import random
 
 # -----------------------------

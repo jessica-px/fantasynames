@@ -1,5 +1,5 @@
-from names.data import dwarf_data, compound_tables
-from names.helpers import define_parse_string, gen_from_table
+from fantasynames.data import dwarf_data, compound_tables
+from fantasynames.helpers import define_parse_string, gen_from_table
 import random
 
 # -----------------------------

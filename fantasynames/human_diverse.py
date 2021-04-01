@@ -1,7 +1,7 @@
-from names.data import human_data, compound_tables
-from names.helpers import gen_from_table
-from names.french import generate_french_name1, generate_french_name2
-from names.anglo import generate_anglo_name1, generate_anglo_name2
+from fantasynames.data import human_data, compound_tables
+from fantasynames.helpers import gen_from_table
+from fantasynames.french import generate_french_name1, generate_french_name2
+from fantasynames.anglo import generate_anglo_name1, generate_anglo_name2
 import random
 
 # -----------------------------
