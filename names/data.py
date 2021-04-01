@@ -6,7 +6,7 @@ hobbit_data = {
     'name1_col1': ['BVB', 'mVB', 'frVB', 'flVB', 'wVB', 'lVB', 'BVm'],
     'name1_col2': ['*o', '*a', '*y', '*in', '*ly', 'ius', 'lius', 'nus', 'ia', 'ina', 'emina', '*urt', 'win'],
     'name2_col1': ['berry', 'sweet', 'milk', 'honey', 'crumble', 'jiggle', 'purple', 'sneaky', 'hungry', 'rumble', 'prickle', 'butter', 'long', 'short', 'old', 'fresh', 'apple', 'poppy', 'fish', 'cream', 'wimble', 'hope', 'smoke', 'fiddle', 'tickle', 'bubble'],
-    'name2_col2': ['muffins', 'cakes', 'belly', 'foot', 'bum', 'finger', 'burrow', 'toe', 'tum', 'weed', 'scone', 'biscuits', 'candles', 'treats', 'crust', 'tart', 'pipe', 'feet', 'wort', 'sticks', 'stack'],
+    'name2_col2': ['muffins', 'cakes', 'belly', 'foot', 'bum', 'finger', 'burrow', 'toe', 'tum', 'weed', 'scone', 'biscuits', 'candles', 'treats', 'crust', 'tart', 'pipe', 'feet', 'wort', 'sticks', 'stack', 'thorp'],
     'patterns': [
         {'char': 'B', 'new_chars': ['t', 'd', 'b', 'p']},
         {'char': 'V', 'new_chars': ['i', 'o', 'a', 'u']},

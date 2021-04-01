@@ -1,5 +1,5 @@
-from data import hobbit_data, elf_data, dwarf_data, human_data, french_data, compound_tables
-from helpers import define_generate_language, define_parse_string, gen_from_table
+from names.data import hobbit_data, elf_data, dwarf_data, human_data, french_data, compound_tables
+from names.helpers import define_generate_language, define_parse_string, gen_from_table
 import random
 
 '''
