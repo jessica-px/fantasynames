@@ -38,18 +38,6 @@ def define_parse_string(patterns):
         return new_string
     return parse_string
 
-def define_generate_language(parser_func, name1_func, name2_func):
-    '''
-    A HOF that, given a parser function (defined with define_parse_string()) and two
-    name-generating functions, returns the parsed and formatted results of both generators.
-    '''
-    def generate_language():
-        name1 = parser_func(name1_func())
-        name2 = parser_func(name2_func())
-        full_name = name1 + ' ' + name2
-        return full_name.title()
-    return generate_language
-
 def gen_from_table(col1, col2):
     '''
     Given two string arrays (a "left" column and a "right" column) returns a string

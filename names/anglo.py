@@ -1,5 +1,5 @@
 from names.data import human_data
-from names.helpers import define_generate_language, define_parse_string, gen_from_table
+from names.helpers import define_parse_string, gen_from_table
 import random
 
 # -----------------------------
@@ -16,13 +16,17 @@ def generate_anglo_name1():
     # 50% chance of adding a suffix
     if random.random() * 100 < 50:
         name += random.choice(human_data['name1_suffixes'])
-    return name
+    return parse_anglo(name).capitalize()
 
 def generate_anglo_name2():
-    name = gen_from_table(human_data['name2_col1'], human_data['name2_col2'])
-    # also, 50% chance to use "name1 of name2" format
+    # 50% chance to use "name1 of name2" format
     if random.random() * 100 <= 50:
-        name = 'of ' + name
-    return name
+        name = gen_from_table(human_data['name2_col1'], human_data['name2_col2'])
+        name = parse_anglo(name).capitalize()
+        return 'of ' + name
+    else:
+        name = gen_from_table(human_data['name2_col1'], human_data['name2_col2'])
+        return parse_anglo(name).capitalize()
 
-generate_anglo_name = define_generate_language(parse_anglo, generate_anglo_name1, generate_anglo_name2)
+def generate_anglo_name():
+    return generate_anglo_name1() + " " + generate_anglo_name2()

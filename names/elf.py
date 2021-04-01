@@ -1,5 +1,5 @@
 from names.data import elf_data, compound_tables
-from names.helpers import define_generate_language, define_parse_string, gen_from_table
+from names.helpers import define_parse_string, gen_from_table
 import random
 
 # -----------------------------
@@ -14,7 +14,7 @@ def gen_elf_name1():
     if random.random() * 100 < 50:
         name += random.choice(elf_data['name1_suffixes'])
 
-    return name
+    return parse_elf(name).capitalize()
 
 def gen_elf_name2():
     # 50% chance of using a nature name VS elfy name
@@ -23,6 +23,7 @@ def gen_elf_name2():
     else:
         name = gen_from_table(compound_tables['nature_col1'], compound_tables['nature_col2'])
 
-    return name
+    return parse_elf(name).capitalize()
 
-generate_elf_name = define_generate_language(parse_elf, gen_elf_name1, gen_elf_name2)
+def generate_elf_name():
+    return gen_elf_name1() + " " + gen_elf_name2()

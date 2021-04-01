@@ -1,5 +1,5 @@
-from names.data import hobbit_data, elf_data, dwarf_data, human_data, french_data, compound_tables
-from names.helpers import define_generate_language, define_parse_string, gen_from_table
+from names.data import human_data, compound_tables
+from names.helpers import gen_from_table
 from names.french import generate_french_name1, generate_french_name2
 from names.anglo import generate_anglo_name1, generate_anglo_name2
 import random
@@ -9,8 +9,8 @@ import random
 # -----------------------------
 
 def gen_mishmash_name1():
-    # 50% chance of English/French
-    if random.random() * 100 <= 50:
+    # 80% chance anglo name, 20% chance french
+    if random.random() * 100 <= 20:
         name = generate_french_name1()
     else:
         name = generate_anglo_name1()
@@ -39,9 +39,9 @@ def gen_mishmash_name2():
             compound_tables['generic_col2'],
             human_data['name2_col2']
         ])
-        name = gen_from_table(col1, col2)
+        name = gen_from_table(col1, col2).capitalize()
 
     return name
 
 def generate_human_name():
-    gen_mishmash_name1() + " " + gen_mishmash_name2()
+    return gen_mishmash_name1() + " " + gen_mishmash_name2()
