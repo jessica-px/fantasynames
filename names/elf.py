@@ -9,6 +9,10 @@ import random
 parse_elf = define_parse_string(elf_data['patterns'])
 
 def gen_elf_name1():
+    '''
+    Outputs a randomized "elf" name. Example outputs:
+    'Ievel', 'Farathon', 'Aidrala', 'Carylon', 'Gwethara'
+    '''
     name = gen_from_table(elf_data['name1_col1'], elf_data['name1_col2'])
     # 50% chance of adding a suffix
     if random.random() * 100 < 50:
@@ -17,6 +21,10 @@ def gen_elf_name1():
     return parse_elf(name).capitalize()
 
 def gen_elf_name2():
+    '''
+    Outputs a randomized "elf" surname. Example outputs:
+    'Sunblossom', 'Theviel', 'Fyrion', 'Ieraine', 'Willowthorn'
+    '''
     # 50% chance of using a nature name VS elfy name
     if random.random() * 100 < 50:
         name = gen_from_table(elf_data['name1_col1'], elf_data['name2_col2'])

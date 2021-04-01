@@ -9,10 +9,18 @@ import random
 parse_hobbit = define_parse_string(hobbit_data['patterns'])
 
 def gen_hobbit_name1():
+    '''
+    Outputs a randomized "hobbit" name. Example outputs:
+    'Wuddin', 'Flobina', 'Mablius', 'Loddly', 'Fruppo'
+    '''
     name = gen_from_table(hobbit_data['name1_col1'], hobbit_data['name1_col2'])
     return parse_hobbit(name).capitalize()
 
 def gen_hobbit_name2():
+    '''
+    Outputs a randomized "hobbit" surname. Example outputs:
+    'Applefeet', 'Honeybiscuits', 'Rumbletum', 'Wimblepipe', 'Fiddlefoot'
+    '''
     name = gen_from_table(hobbit_data['name2_col1'], hobbit_data['name2_col2'])
     return parse_hobbit(name).capitalize()
 

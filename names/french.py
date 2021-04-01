@@ -8,10 +8,18 @@ import random
 parse_french = define_parse_string(french_data['patterns'])
 
 def generate_french_name1():
+    '''
+    Outputs a randomized "French" name. Example outputs:
+    'Lureit', 'Isera', 'Clesont', 'Ileau', 'Anasande'
+    '''
     name = gen_from_table(french_data['name1_col1'], french_data['name1_col2'])
     return parse_french(name).capitalize()
 
 def generate_french_name2():
+    '''
+    Outputs a randomized "French" surname. Example outputs:
+    'Loubec', 'Rouville', 'Collefluer', 'd'Leauvcourt', 'du Berchatel'
+    '''
     name = gen_from_table(french_data['name2_col1'], french_data['name2_col2'])
     name = parse_french(name).capitalize()
     # 30% chance of d' prefix

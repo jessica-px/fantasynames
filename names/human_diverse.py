@@ -9,6 +9,9 @@ import random
 # -----------------------------
 
 def gen_mishmash_name1():
+    '''
+    Outputs a randomized "human" name, which will be either "French" or "Anglo".
+    '''
     # 80% chance anglo name, 20% chance french
     if random.random() * 100 <= 20:
         name = generate_french_name1()
@@ -17,6 +20,9 @@ def gen_mishmash_name1():
     return name
 
 def gen_mishmash_name2():
+    '''
+    Outputs a randomized "human" surname, which will be either "French", "Anglo", or cobbled together from various tables.
+    '''
     prob = random.random() * 100
     # 20% chance of english surname
     if prob <= 20:
