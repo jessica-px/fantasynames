@@ -4,7 +4,7 @@ A random name generator that produces names aligning (more or less) with common 
 
 ## Installation
 
-`pip install fantasynames`
+`python3 -m pip install fantasynames`
 
 ## Usage
 
