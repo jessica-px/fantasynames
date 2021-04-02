@@ -24,7 +24,7 @@ But right now this transformation is just a dictionary -- it doesn't do anything
 
 ## 1. Define the transformations
 
-Let's walk through how we might add transformations to the snake language we made in the [How to Add a New Name Generator Guide](docs/new-generator-guide.md). First, we need to decide what these transformations will be. Let's revisit one of the tables we created:
+Let's walk through how we might add transformations to the snake language we made in the [How to Add a New Name Generator Guide](new-generator-guide.md). First, we need to decide what these transformations will be. Let's revisit one of the tables we created:
 
 | name1_col1| name1_col2  |
 |-----|-------|
