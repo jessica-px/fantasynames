@@ -42,7 +42,7 @@ Now that we're thinking with transformations, we can find ways to simplify this.
 }
 ```
 
-And I see another way we could simplify our table. Snake languages should have a lot of S's, in my opnion, which is why I added both `'si'` and `'ssi'`. In my mind, `'s'` and `'ss'` should be basically interchangable with each other. That's something we could capture with a transformation! And in fact, why not throw other snake-y consonants in there, like `sh` and `z`? This could give us a transformation like this:
+And I see another way we could simplify our table. Snake languages should have a lot of S's, in my opinion, which is why I added both `'si'` and `'ssi'`. In my mind, `'s'` and `'ss'` should be basically interchangable with each other. That's something we could capture with a transformation! And in fact, why not throw other snake-y consonants in there, like `sh` and `z`? This could give us a transformation like this:
 
 ```python
 {
@@ -136,7 +136,7 @@ print(transformed_name) # Possible outputs: 'Sassez', 'Shezis', 'Zazzesh', etc.
 
 That's it, we're doing it! We're now applying the transformations that we defined in `data.py`, allowing this simple 5 character string to have 1125 snake-y variations.
 
-Now we just need to add this to actual name generating logic!
+Now we just need to add this to the actual name generating logic!
 
 ## 4. Update name generating function(s)
 
@@ -153,7 +153,7 @@ transform_snake = define_transform_function(snake_data['transformations'])
 
 def generate_snake_name1():
     name = gen_from_table(snake_data.name1_col1, snake_data.name1_col2)
-    return transform_snake(name).capitalize() # <-- It's import to transform it _before_ capitalizing it
+    return transform_snake(name).capitalize() # <-- It's import to transform it before capitalizing it, or the newly capitalized letters might get caught up in our transformations!
 
 def generate_snake_name2():
     name = gen_from_table(snake_data.name2_col1, snake_data.name2_col2)
