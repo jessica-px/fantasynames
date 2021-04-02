@@ -34,4 +34,8 @@ names.human()
 
 Note that `human()` provides a diverse mix of different first and last name styles, including `anglo()` and `french()`...and more!
 
+## Adding Languages
 
+Want to fork this repo and use it to generate your own weird fantasy names? Or even better -- want to open a PR and contribute to this repo?
+
+Check out the [How to Add a New Name Generator Guide](docs/new-generator-guide.md). And then if you want to ramp up the complexity, take a look at the [Transformation Guide](docs/transformation-guide.md).
