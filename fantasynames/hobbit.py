@@ -1,12 +1,12 @@
 from fantasynames.data import hobbit_data
-from fantasynames.helpers import define_parse_string, gen_from_table
+from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
 # -----------------------------
 #           Hobbit Names
 # -----------------------------
 
-parse_hobbit = define_parse_string(hobbit_data['patterns'])
+transform_hobbit = define_transform_function(hobbit_data['transformations'])
 
 def gen_hobbit_name1():
     '''
@@ -14,7 +14,7 @@ def gen_hobbit_name1():
     'Wuddin', 'Flobina', 'Mablius', 'Loddly', 'Fruppo'
     '''
     name = gen_from_table(hobbit_data['name1_col1'], hobbit_data['name1_col2'])
-    return parse_hobbit(name).capitalize()
+    return transform_hobbit(name).capitalize()
 
 def gen_hobbit_name2():
     '''
@@ -22,7 +22,7 @@ def gen_hobbit_name2():
     'Applefeet', 'Honeybiscuits', 'Rumbletum', 'Wimblepipe', 'Fiddlefoot'
     '''
     name = gen_from_table(hobbit_data['name2_col1'], hobbit_data['name2_col2'])
-    return parse_hobbit(name).capitalize()
+    return transform_hobbit(name).capitalize()
 
 def generate_hobbit_name():
     return gen_hobbit_name1() + " " + gen_hobbit_name2()

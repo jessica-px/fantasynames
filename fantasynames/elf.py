@@ -1,12 +1,12 @@
 from fantasynames.data import elf_data, compound_tables
-from fantasynames.helpers import define_parse_string, gen_from_table
+from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
 # -----------------------------
 #           Elf Names
 # -----------------------------
 
-parse_elf = define_parse_string(elf_data['patterns'])
+transform_elf = define_transform_function(elf_data['transformations'])
 
 def gen_elf_name1():
     '''
@@ -18,7 +18,7 @@ def gen_elf_name1():
     if random.random() * 100 < 50:
         name += random.choice(elf_data['name1_suffixes'])
 
-    return parse_elf(name).capitalize()
+    return transform_elf(name).capitalize()
 
 def gen_elf_name2():
     '''
@@ -31,7 +31,7 @@ def gen_elf_name2():
     else:
         name = gen_from_table(compound_tables['nature_col1'], compound_tables['nature_col2'])
 
-    return parse_elf(name).capitalize()
+    return transform_elf(name).capitalize()
 
 def generate_elf_name():
     return gen_elf_name1() + " " + gen_elf_name2()

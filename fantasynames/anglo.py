@@ -1,11 +1,11 @@
 from fantasynames.data import human_data
-from fantasynames.helpers import define_parse_string, gen_from_table
+from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
 # -----------------------------
 #           Anglo Names
 # -----------------------------
-parse_anglo = define_parse_string(human_data['patterns'])
+transform_anglo = define_transform_function(human_data['transformations'])
 
 def generate_anglo_name1():
     '''
@@ -20,7 +20,7 @@ def generate_anglo_name1():
     # 50% chance of adding a suffix
     if random.random() * 100 < 50:
         name += random.choice(human_data['name1_suffixes'])
-    return parse_anglo(name).capitalize()
+    return transform_anglo(name).capitalize()
 
 def generate_anglo_name2():
     '''
@@ -30,11 +30,11 @@ def generate_anglo_name2():
     # 50% chance to use "name1 of name2" format
     if random.random() * 100 <= 50:
         name = gen_from_table(human_data['name2_col1'], human_data['name2_col2'])
-        name = parse_anglo(name).capitalize()
+        name = transform_anglo(name).capitalize()
         return 'of ' + name
     else:
         name = gen_from_table(human_data['name2_col1'], human_data['name2_col2'])
-        return parse_anglo(name).capitalize()
+        return transform_anglo(name).capitalize()
 
 def generate_anglo_name():
     return generate_anglo_name1() + " " + generate_anglo_name2()

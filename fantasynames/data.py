@@ -7,9 +7,9 @@ hobbit_data = {
     'name1_col2': ['*o', '*a', '*y', '*in', '*ly', 'ius', 'lius', 'nus', 'ia', 'ina', 'emina', '*urt', 'win'],
     'name2_col1': ['berry', 'sweet', 'milk', 'honey', 'crumble', 'jiggle', 'purple', 'sneaky', 'hungry', 'rumble', 'prickle', 'butter', 'long', 'short', 'old', 'fresh', 'apple', 'poppy', 'fish', 'cream', 'wimble', 'hope', 'smoke', 'fiddle', 'tickle', 'bubble'],
     'name2_col2': ['muffins', 'cakes', 'belly', 'foot', 'bum', 'finger', 'burrow', 'toe', 'tum', 'weed', 'scone', 'biscuits', 'candles', 'treats', 'crust', 'tart', 'pipe', 'feet', 'wort', 'sticks', 'stack', 'thorp'],
-    'patterns': [
-        {'char': 'B', 'new_chars': ['t', 'd', 'b', 'p']},
-        {'char': 'V', 'new_chars': ['i', 'o', 'a', 'u']},
+    'transformations': [
+        {'input': 'B', 'outputs': ['t', 'd', 'b', 'p']},
+        {'input': 'V', 'outputs': ['i', 'o', 'a', 'u']},
     ]
 }
 
@@ -18,12 +18,12 @@ elf_data = {
     'name1_col2': ['drAl', 'thAn', 'vAl', 'rAth', 'thAr', 'rAn', 'rAl', 'nAl'],
     'name1_suffixes': ['a', 'ia', 'on', 'ys'],
     'name2_col2': ['Nther', 'Nion', 'Nonus', 'Niath', 'Naire', 'Nuth', 'Neus', 'Naine', 'viel'],
-    'patterns': [
-        {'char': 'A', 'new_chars': ['a', 'a', 'e', 'e', 'ia', 'ea', 'y']},
-        {'char': 'E', 'new_chars': ['a', 'e']},
-        {'char': 'N', 'new_chars': ['n', 'm', 'l', 'r']},
-        {'char': 'R', 'new_chars': ['l', 'r']},
-        {'char': 'M', 'new_chars': ['n', 'm']},
+    'transformations': [
+        {'input': 'A', 'outputs': ['a', 'a', 'e', 'e', 'ia', 'ea', 'y']},
+        {'input': 'E', 'outputs': ['a', 'e']},
+        {'input': 'N', 'outputs': ['n', 'm', 'l', 'r']},
+        {'input': 'R', 'outputs': ['l', 'r']},
+        {'input': 'M', 'outputs': ['n', 'm']},
     ]
 }
 
@@ -31,13 +31,13 @@ dwarf_data = {
     'name1_col1': ['TOrN', 'TOR', 'thOR', 'thOrN', 'ing', 'hOR', 'ein', 'lOrg', 'ROT', 'TrOn', 'hOT', 'bOr'],
     'name1_col2': ['gIRD', 'hIRD', 'vIRD', 'rOm', 'mAr', 'nAr', 'mIr', 'nIr', 'An', 'vAR', 'muiR', 'ean'],
     'name1_suffixes': ['a'],
-    'patterns': [
-        {'char': 'A', 'new_chars': ['i', 'a', 'o', 'u']}, # any vowel
-        {'char': 'I', 'new_chars': ['i', 'e']}, # front vowels
-        {'char': 'O', 'new_chars': ['o', 'u']}, # back vowels
-        {'char': 'R', 'new_chars': ['l', 'r']}, # liquids
-        {'char': 'T', 'new_chars': ['t', 'd', 'th']}, # alveolar obstruents
-        {'char': 'D', 'new_chars': ['t', 'd']}, # alveolar stops
+    'transformations': [
+        {'input': 'A', 'outputs': ['i', 'a', 'o', 'u']}, # any vowel
+        {'input': 'I', 'outputs': ['i', 'e']}, # front vowels
+        {'input': 'O', 'outputs': ['o', 'u']}, # back vowels
+        {'input': 'R', 'outputs': ['l', 'r']}, # liquids
+        {'input': 'T', 'outputs': ['t', 'd', 'th']}, # alveolar obstruents
+        {'input': 'D', 'outputs': ['t', 'd']}, # alveolar stops
     ]
 }
 
@@ -58,11 +58,11 @@ human_data = {
         'stead', 'ster', 'stow', 'ton', 'ward', 'wick', 'wich', 'worth',
         'field', 'ford', 'hill', 'dale', 'fell', 'shire', 'stein', 'rock', 'mill', 'bridge', 'son', 'bluff'
     ],
-    'patterns': [
-        {'char': 'I', 'new_chars': ['i', 'e', 'y']},
-        {'char': 'A', 'new_chars': ['i', 'a', 'o', 'u', 'e']},
-        {'char': 'R', 'new_chars': ['l', 'r']},
-        {'char': 'N', 'new_chars': ['n', 'm']},
+    'transformations': [
+        {'input': 'I', 'outputs': ['i', 'e', 'y']},
+        {'input': 'A', 'outputs': ['i', 'a', 'o', 'u', 'e']},
+        {'input': 'R', 'outputs': ['l', 'r']},
+        {'input': 'N', 'outputs': ['n', 'm']},
     ]
 }
 
@@ -72,11 +72,11 @@ french_data = {
     'name2_col1': ['nI', 'vI', 'rou', 'for', 'bAr', 'clar', 'lIv', 'lI', 'caste', 'tour', 'sAtte', 'cAlle', 'I', 'Atin', 'hAL'],
     'name2_col2': ['ville', 'val', 'blAc', 'mont', 'court', 'menil', 'chatel', 'vast', 'bec', 'dalle', 'tuit', 'fleur', 'lan'],
     'name2_prefixes': ['d\'', 'de ', 'du '],
-    'patterns': [
-        {'char': 'A', 'new_chars': ['a', 'e', 'i', 'o']},
-        {'char': 'I', 'new_chars': ['ou', 'eau']},
-        {'char': 'N', 'new_chars': ['n', 'm']},
-        {'char': 'L', 'new_chars': ['l', 'r']},
+    'transformations': [
+        {'input': 'A', 'outputs': ['a', 'e', 'i', 'o']},
+        {'input': 'I', 'outputs': ['ou', 'eau']},
+        {'input': 'N', 'outputs': ['n', 'm']},
+        {'input': 'L', 'outputs': ['l', 'r']},
     ]
 }
 

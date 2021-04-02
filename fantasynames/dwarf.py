@@ -1,12 +1,12 @@
 from fantasynames.data import dwarf_data, compound_tables
-from fantasynames.helpers import define_parse_string, gen_from_table
+from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
 # -----------------------------
 #           Dwarf Names
 # -----------------------------
 
-parse_dwarf = define_parse_string(dwarf_data['patterns'])
+transform_dwarf = define_transform_function(dwarf_data['transformations'])
 
 def gen_dwarf_name1():
     '''
@@ -17,7 +17,7 @@ def gen_dwarf_name1():
     # 30% chance of adding a suffix
     if random.random() * 100 < 30:
         name += random.choice(dwarf_data['name1_suffixes'])
-    return parse_dwarf(name).capitalize()
+    return transform_dwarf(name).capitalize()
 
 def gen_dwarf_name2():
     '''
