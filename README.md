@@ -1,5 +1,7 @@
 # Fantasy Name Generator
 
+[![PyPI version](https://badge.fury.io/py/fantasynames.svg)](https://badge.fury.io/py/fantasynames)
+
 A random name generator that produces names aligning (more or less) with common conventions for fantasy characters in fictional media such as Dungeons and Dragons or World of Warcraft.
 
 ## Installation
