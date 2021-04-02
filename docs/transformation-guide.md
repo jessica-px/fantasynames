@@ -153,7 +153,7 @@ transform_snake = define_transform_function(snake_data['transformations'])
 
 def generate_snake_name1():
     name = gen_from_table(snake_data.name1_col1, snake_data.name1_col2)
-    return transform_snake(name).capitalize() # <-- It's import to transform it before capitalizing it, or the newly capitalized letters might get caught up in our transformations!
+    return transform_snake(name).capitalize() # <-- It's import to transform it before capitalizing it!
 
 def generate_snake_name2():
     name = gen_from_table(snake_data.name2_col1, snake_data.name2_col2)
