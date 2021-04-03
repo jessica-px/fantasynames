@@ -36,8 +36,24 @@ names.human()
 
 Note that `human()` provides a diverse mix of different first and last name styles, including `anglo()` and `french()`...and more!
 
-## Adding Languages
+## Contributing
 
-Want to fork this repo and use it to generate your own weird fantasy names? Or even better -- want to open a PR and contribute to this repo?
+### Poetry
 
-Check out the [How to Add a New Name Generator Guide](docs/new-generator-guide.md). And then if you want to ramp up the complexity, take a look at the [Transformation Guide](docs/transformation-guide.md).
+This package uses [Poetry](https://python-poetry.org/) for package management. After checking out the repo, use `poetry install` to install all the required dependencies. Anytime you need to add a package, instead of `pip install`, use:
+
+```
+poetry add <PACKAGE_NAME_HERE>
+```
+
+### Code Formatting
+
+We do code formatting with [Python Black](https://github.com/psf/black). Before opening a PR, make sure to format your code by running:
+
+```
+poetry run black fantasynames
+```
+
+### Guides
+
+For guides on how to make your own name generators, check out the [How to Add a New Name Generator Guide](docs/new-generator-guide.md). And then if you want to ramp up the complexity, take a look at the [Transformation Guide](docs/transformation-guide.md).
