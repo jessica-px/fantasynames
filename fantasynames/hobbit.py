@@ -8,7 +8,7 @@ from fantasynames.helpers import define_transform_function, gen_from_table
 transform_hobbit = define_transform_function(hobbit_data["transformations"])
 
 
-def gen_hobbit_name1():
+def gen_hobbit_name1() -> str:
     """
     Outputs a randomized "hobbit" name. Example outputs:
     'Wuddin', 'Flobina', 'Mablius', 'Loddly', 'Fruppo'
@@ -17,7 +17,7 @@ def gen_hobbit_name1():
     return transform_hobbit(name).capitalize()
 
 
-def gen_hobbit_name2():
+def gen_hobbit_name2() -> str:
     """
     Outputs a randomized "hobbit" surname. Example outputs:
     'Applefeet', 'Honeybiscuits', 'Rumbletum', 'Wimblepipe', 'Fiddlefoot'
@@ -26,5 +26,5 @@ def gen_hobbit_name2():
     return transform_hobbit(name).capitalize()
 
 
-def generate_hobbit_name():
+def generate_hobbit_name() -> str:
     return gen_hobbit_name1() + " " + gen_hobbit_name2()

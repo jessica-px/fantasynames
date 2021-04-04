@@ -8,7 +8,7 @@ import random
 transform_anglo = define_transform_function(human_data["transformations"])
 
 
-def generate_anglo_name1():
+def generate_anglo_name1() -> str:
     """
     Outputs a randomized "Anglo" first name. Example outputs:
     'Senia', 'Redreth', 'Dina', 'Brun', 'Kuswall', 'Ulinworda'
@@ -24,7 +24,7 @@ def generate_anglo_name1():
     return transform_anglo(name).capitalize()
 
 
-def generate_anglo_name2():
+def generate_anglo_name2() -> str:
     """
     Outputs a randomized "Anglo" surname. Example outputs:
     'Gilmore', 'Dunstow',  'of Bradham', 'of Knockster', 'Lockshaw'
@@ -39,5 +39,5 @@ def generate_anglo_name2():
         return transform_anglo(name).capitalize()
 
 
-def generate_anglo_name():
+def generate_anglo_name() -> str:
     return generate_anglo_name1() + " " + generate_anglo_name2()

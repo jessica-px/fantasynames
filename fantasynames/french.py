@@ -8,7 +8,7 @@ import random
 transform_french = define_transform_function(french_data["transformations"])
 
 
-def generate_french_name1():
+def generate_french_name1() -> str:
     """
     Outputs a randomized "French" name. Example outputs:
     'Lureit', 'Isera', 'Clesont', 'Ileau', 'Anasande'
@@ -17,7 +17,7 @@ def generate_french_name1():
     return transform_french(name).capitalize()
 
 
-def generate_french_name2():
+def generate_french_name2() -> str:
     """
     Outputs a randomized "French" surname. Example outputs:
     'Loubec', 'Rouville', 'Collefluer', 'd'Leauvcourt', 'du Berchatel'
@@ -31,5 +31,5 @@ def generate_french_name2():
     return name
 
 
-def generate_french_name():
+def generate_french_name() -> str:
     return generate_french_name1() + " " + generate_french_name2()

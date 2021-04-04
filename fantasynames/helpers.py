@@ -1,4 +1,5 @@
 import random
+import typing as t
 
 """
 This file is for storing helper functions that, ideally, handle the bulk of the
@@ -6,13 +7,15 @@ repeatable logic involved in generating names.
 """
 
 
-def define_transform_function(transformations):
+def define_transform_function(
+    transformations: t.List[t.Dict],
+) -> t.Callable[[str], str]:
     """
     A HOF that, given an of array of 'pattern' dicts, returns a parse_string() function
     that operates based on that array. See transformations.md for more info.
     """
 
-    def transform_string(string):
+    def transform_string(string: str) -> str:
         """
         Given a string, loops over each char. If 'input' is present in one of
         pre-defined 'transformation' dicts, "replaces" it with a randomly
@@ -37,7 +40,7 @@ def define_transform_function(transformations):
     return transform_string
 
 
-def gen_from_table(col1, col2):
+def gen_from_table(col1: t.List[str], col2: t.List[str]) -> str:
     """
     Given two string arrays (a "left" column and a "right" column) returns a string
     concatenating a random selection from each. For brevity.

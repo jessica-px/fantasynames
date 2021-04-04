@@ -9,7 +9,7 @@ import random
 transform_elf = define_transform_function(elf_data["transformations"])
 
 
-def gen_elf_name1():
+def gen_elf_name1() -> str:
     """
     Outputs a randomized "elf" name. Example outputs:
     'Ievel', 'Farathon', 'Aidrala', 'Carylon', 'Gwethara'
@@ -22,7 +22,7 @@ def gen_elf_name1():
     return transform_elf(name).capitalize()
 
 
-def gen_elf_name2():
+def gen_elf_name2() -> str:
     """
     Outputs a randomized "elf" surname. Example outputs:
     'Sunblossom', 'Theviel', 'Fyrion', 'Ieraine', 'Willowthorn'
@@ -38,5 +38,5 @@ def gen_elf_name2():
     return transform_elf(name).capitalize()
 
 
-def generate_elf_name():
+def generate_elf_name() -> str:
     return gen_elf_name1() + " " + gen_elf_name2()
