@@ -41,7 +41,7 @@ Since `name2` follows a compound word pattern, we could also store its data in t
 
 Inside the `fantasynames` directory, let's create a file for our new name generator. Since it's a snake language, we'll simply call it `snake.py`.
 
-Our snake name generator will subclassed from the `Language` class, which comes pre-baked with a lot of the logic we'll be needing. We only have to override a few methods and everything should Just Work. Here's a basic template:
+Our snake name generator will be subclassed from the `Language` class, which comes pre-baked with a lot of the logic we'll be needing. We only have to override a few methods and everything should Just Work. Here's a basic template:
 
 ```python
 # snake.py
