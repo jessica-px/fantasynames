@@ -46,12 +46,18 @@ This package uses [Poetry](https://python-poetry.org/) for package management. A
 poetry add <PACKAGE_NAME_HERE>
 ```
 
-### Code Formatting
+### Linting / Formatting
 
 We do code formatting with [Python Black](https://github.com/psf/black). Before opening a PR, make sure to format your code by running:
 
 ```
 poetry run black fantasynames
+```
+
+Please also run `flake8` to catch any remaining problems:
+
+```
+poetry run flake8
 ```
 
 ### Guides
