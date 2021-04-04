@@ -1,4 +1,4 @@
-from fantasynames.hobbit import generate_hobbit_name as hobbit
+from fantasynames.hobbit import hobbit
 from fantasynames.elf import elf
 from fantasynames.french import french
 from fantasynames.anglo import anglo
