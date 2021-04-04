@@ -119,48 +119,33 @@ Just as an example, `'SE'` has 15 different possible results, and `'SES'` has _7
 
 Very snake-y. But this is still theoretical, because we're not actually _doing_ any transformations yet...
 
-## 3. Defining the transformer function
+## 3. Assigning the transformations to our class
 
-The actual logic of applying these transformations will be handled by our **transformer function**. As you might expect, it'll do the steps of looking at each character, checking to see if a transformation should apply to them, randomly selecting a replacement, etc. Luckily, you don't have to write all of that from scratch.
+Back in our `Snake` class in `snake.py`, we need to tell the class which transformations to use. Our parent `Language` class possesses an attribute called `transformations` that by default is an empty list `[]`, but if we override that, the class will perform the given transformations on our names.
 
-One of the helper functions in this library is named `define_transform_function()`, and it is a higher-order function that creates transformation functions. Using it is really simple -- we pass it an array of transformations, and it gives us a transformer function that will perform them on a given string. Like so:
-
-```python
-from fantasynames.data import snake_data
-from fantasynames.helpers import define_transform_function
-
-transform_snake = define_transform_function(snake_data['transformations'])
-transformed_name = transform_snake('SESES')
-print(transformed_name) # Possible outputs: 'Sassez', 'Shezis', 'Zazzesh', etc.
-```
-
-That's it, we're doing it! We're now applying the transformations that we defined in `data.py`, allowing this simple 5 character string to have 1125 snake-y variations.
-
-Now we just need to add this to the actual name generating logic!
-
-## 4. Update name generating function(s)
-
-Let's revist `snake.py`. As it currently exists, it'll give us weird strings with capital letters mixed in like `'SESUS'` and `'SElE'`. It won't do any transformations until we add a transformer function and start using it in our name generating logic.
-
-So, a revised edition of `snake.py` would look like this:
+Here's how the file will look:
 
 ```python
 # snake.py
-from data import snake_data
-from helpers import gen_from_table, define_transform_function
+from fantasynames.language import Language
+from fantasynames.data import snake_data
 
-transform_snake = define_transform_function(snake_data['transformations'])
+class Snake(Language):
+    transformations = snake_data["transformations"] # <--- this is what we added!
 
-def generate_snake_name1():
-    name = gen_from_table(snake_data.name1_col1, snake_data.name1_col2)
-    return transform_snake(name).capitalize() # <-- It's import to transform it before capitalizing it!
+    @classmethod
+    def _name1_male(cls) -> str:
+        return cls._name_from_lists([snake_data["name1_col1"], snake_data["name1_col2"]])
 
-def generate_snake_name2():
-    name = gen_from_table(snake_data.name2_col1, snake_data.name2_col2)
-    return transform_snake(name).capitalize()
+    @classmethod
+    def _name1_female(cls) -> str:
+        return cls._name1_male()
 
-def generate_snake_name():
-    return generate_snake_name1() + " " + generate_snake_name2()
+    @classmethod
+    def _name2(cls) -> str:
+        return cls._name_from_lists([snake_data["name2_col1"], snake_data["name2_col2"]])
 ```
 
-That's it, we've added transformations to our snake name generator! Now it will generate an unfathomably huge number of snake-y names, with relatively little input data.
+Now whenever we call `Snake.name()`, it will _automatically_ apply these tranformations to both the first and last names.
+
+And that's it, we've added transformations to our snake name generator! Now it will generate an unfathomably huge number of snake-y names, with relatively little input data.
