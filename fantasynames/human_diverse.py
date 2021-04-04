@@ -9,7 +9,7 @@ import random
 # -----------------------------
 
 
-def gen_mishmash_name1():
+def gen_mishmash_name1() -> str:
     """
     Outputs a randomized "human" name, which will be either "French" or "Anglo".
     """
@@ -21,7 +21,7 @@ def gen_mishmash_name1():
     return name
 
 
-def gen_mishmash_name2():
+def gen_mishmash_name2() -> str:
     """
     Outputs a randomized "human" surname, which will be either
     "French", "Anglo", or cobbled together from various tables.
@@ -57,5 +57,5 @@ def gen_mishmash_name2():
     return name
 
 
-def generate_human_name():
+def generate_human_name() -> str:
     return gen_mishmash_name1() + " " + gen_mishmash_name2()

@@ -48,16 +48,10 @@ poetry add <PACKAGE_NAME_HERE>
 
 ### Linting / Formatting
 
-We do code formatting with [Python Black](https://github.com/psf/black). Before opening a PR, make sure to format your code by running:
+We do code formatting with [Python Black](https://github.com/psf/black), other linting with `flake8`, and type checking with `mypy`. Before opening a PR, please make sure to run all of these. Below is a helpful command to do them all at once:
 
 ```
-poetry run black fantasynames
-```
-
-Please also run `flake8` to catch any remaining problems:
-
-```
-poetry run flake8
+poetry run black fantasynames & poetry run flake8 fantasynames & poetry run mypy fantasynames
 ```
 
 ### Guides

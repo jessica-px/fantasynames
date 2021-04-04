@@ -9,7 +9,7 @@ import random
 transform_dwarf = define_transform_function(dwarf_data["transformations"])
 
 
-def gen_dwarf_name1():
+def gen_dwarf_name1() -> str:
     """
     Outputs a randomized "dwarf" first name. Example outputs:
     'Thormer', 'Hothvirda', 'Burmir', 'Ingvola', 'Einrom'
@@ -21,7 +21,7 @@ def gen_dwarf_name1():
     return transform_dwarf(name).capitalize()
 
 
-def gen_dwarf_name2():
+def gen_dwarf_name2() -> str:
     """
     Outputs a randomized "dwarf" surname. Example outputs:
     'Stonespear', 'Steelbrow', 'Ironmead', 'Proudhelm', 'Battlemace'
@@ -32,5 +32,5 @@ def gen_dwarf_name2():
     return name.capitalize()
 
 
-def generate_dwarf_name():
+def generate_dwarf_name() -> str:
     return gen_dwarf_name1() + " " + gen_dwarf_name2()

@@ -4,4 +4,4 @@ exclude =
     __pycache__,
     build,
     dist,
-    __init__
+    __init__.py
