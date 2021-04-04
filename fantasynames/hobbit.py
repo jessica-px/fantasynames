@@ -1,6 +1,5 @@
 from fantasynames.data import hobbit_data
 from fantasynames.helpers import define_transform_function, gen_from_table
-import random
 
 # -----------------------------
 #           Hobbit Names
