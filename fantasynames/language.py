@@ -27,11 +27,12 @@ class Language(ABC):
         elif gender == "any":
             name = cls._name1_any()
         else:
-            raise ValueError(
-                f'Valid string parameters for name generating functions are "female",\
-                "male", or "any". The given value was the {type(gender).__name__}\
-                "{gender}".'
+            msg = (
+                "Valid string parameters for name generating functions are "
+                '"female", "male", or "any". The given value was the '
+                f'{type(gender).__name__} "{gender}".'
             )
+            raise ValueError(msg)
 
         return cls._transform(name)
 
