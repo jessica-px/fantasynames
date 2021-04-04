@@ -51,7 +51,7 @@ poetry add <PACKAGE_NAME_HERE>
 We do code formatting with [Python Black](https://github.com/psf/black), other linting with `flake8`, and type checking with `mypy`. Before opening a PR, please make sure to run all of these. Below is a helpful command to do them all at once:
 
 ```
-poetry run black fantasynames & poetry run flake8 fantasynames & poetry run mypy fantasynames
+poetry run black fantasynames && poetry run flake8 fantasynames && poetry run mypy fantasynames
 ```
 
 ### Guides
