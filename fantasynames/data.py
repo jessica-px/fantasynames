@@ -189,7 +189,7 @@ human_data: t.Dict[str, t.List] = {
         "mAnd",
         "der",
     ],
-    "name1_suffixes": ["a", "ia"],
+    "name1_suffixes": ["a", "ia", "ie", "ise", "ise", "isa"],
     "name2_col1": [
         "white",
         "red",
