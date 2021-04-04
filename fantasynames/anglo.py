@@ -1,76 +1,35 @@
 from fantasynames.data import human_data
-from fantasynames.helpers import define_transform_function, gen_from_table
+from fantasynames.language import Language
 import random
 
-# -----------------------------
-#           Helpers
-# -----------------------------
 
-transform_anglo = define_transform_function(human_data["transformations"])
+class Anglo(Language):
+    transformations = human_data["transformations"]
 
-
-def generate_anglo_name1_base() -> str:
-    """
-    Outputs a randomized (masculine) "Anglo" first name.
-    """
-    # 50% chance of only using col1
-    if random.random() * 100 < 50:
-        name = random.choice(human_data["name1_col1"])
-    else:
-        name = gen_from_table(human_data["name1_col1"], human_data["name1_col2"])
-    return name
-
-
-def generate_anglo_name1_female() -> str:
-    """
-    Outputs a randomized "Anglo" first name with a feminine suffix.
-    """
-    name = generate_anglo_name1_base() + random.choice(human_data["name1_suffixes"])
-    return name
-
-
-def generate_anglo_name1(gender: str = "any") -> str:
-    """
-    Outputs a randomized "Anglo" first name with variable gender.
-    """
-    if gender == "female":
-        name = generate_anglo_name1_female()
-    elif gender == "male":
-        name = generate_anglo_name1_base()
-    elif gender == "any":  # 50% chance of male or female first name
+    @classmethod
+    def _name1_male(cls) -> str:
+        # 50% chance of just using one col (aka one syllable)
         if random.random() * 100 < 50:
-            name = generate_anglo_name1_base()
+            cols = [human_data["name1_col1"]]
         else:
-            name = generate_anglo_name1_female()
-    else:
-        raise ValueError(
-            f'Valid string parameters for name generating functions are "female", "male", or "any". The given value was the {type(gender).__name__} "{gender}".'
-        )
-    return transform_anglo(name).capitalize()
+            cols = [human_data["name1_col1"], human_data["name1_col2"]]
+        return cls._name_from_lists(cols)
+
+    @classmethod
+    def _name1_female(cls) -> str:
+        name = cls._name1_male() + cls._name_from_lists([human_data["name1_suffixes"]])
+        return name
+
+    @classmethod
+    def _name2(cls) -> str:
+        cols = [human_data["name2_col1"], human_data["name2_col2"]]
+        name = cls._name_from_lists(cols)
+        name = cls._transform(name)
+        # 50% chance to use "name1 of name2" format
+        if random.random() * 100 < 50:
+            return "of " + name
+        else:
+            return name
 
 
-def generate_anglo_name2() -> str:
-    """
-    Outputs a randomized "Anglo" surname.
-    """
-    # 50% chance to use "name1 of name2" format
-    if random.random() * 100 <= 50:
-        name = gen_from_table(human_data["name2_col1"], human_data["name2_col2"])
-        name = transform_anglo(name).capitalize()
-        return "of " + name
-    else:
-        name = gen_from_table(human_data["name2_col1"], human_data["name2_col2"])
-        return transform_anglo(name).capitalize()
-
-
-# -----------------------------
-#   Name Generating Function
-# -----------------------------
-
-
-def generate_anglo_name(gender: str = "any") -> str:
-    """
-    Outputs a randomized "Anglo" first and last name, with the first name having
-    variable gender.
-    """
-    return generate_anglo_name1(gender) + " " + generate_anglo_name2()
+anglo = Anglo.name
