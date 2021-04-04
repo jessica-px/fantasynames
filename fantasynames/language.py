@@ -10,7 +10,7 @@ class Language(ABC):
     def name(cls, gender: str = "any") -> str:
         """
         Returns a randomly generated first and last name. This is the only method
-        that we intend to be "publicly" used outside of this class.
+        that we intend to be "publicly" used outside of this package.
         """
         return cls._name1(gender) + " " + cls._name2()
 
