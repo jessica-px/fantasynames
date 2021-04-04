@@ -12,7 +12,10 @@ class Language(ABC):
         Returns a randomly generated first and last name. This is the only method
         that we intend to be "publicly" used outside of this package.
         """
-        return cls._name1(gender) + " " + cls._name2()
+        name = cls._name1(gender) + " " + cls._name2()
+        transformed_name = cls._transform(name)
+        caps_name = cls._capitalize(transformed_name)
+        return caps_name
 
     @classmethod
     def _name1(cls, gender: str = "any") -> str:
@@ -34,7 +37,7 @@ class Language(ABC):
             )
             raise ValueError(msg)
 
-        return cls._transform(name)
+        return name
 
     @classmethod
     @abstractmethod
@@ -91,7 +94,23 @@ class Language(ABC):
                 if char == "*":
                     new_char = new_string[-1]
             new_string += new_char
-        return new_string.capitalize()
+        return new_string
+
+    @classmethod
+    def _capitalize(cls, name: str) -> str:
+        caps_list = []
+        for word in name.split():
+            # leave particles lowercase
+            if word in ["of", "du", "del", "de", "la", "von", "the"]:
+                caps_list.append(word)
+            # handle d'
+            elif word[:2] == "d'":
+                fragment = word[2:].capitalize()
+                caps_list.append("d'" + fragment)
+            # capitalize the rest
+            else:
+                caps_list.append(word.capitalize())
+        return " ".join(caps_list)
 
     @classmethod
     def _name_from_lists(cls, lists: t.List[t.List[str]]) -> str:

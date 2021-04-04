@@ -24,7 +24,6 @@ class Anglo(Language):
     def _name2(cls) -> str:
         cols = [human_data["name2_col1"], human_data["name2_col2"]]
         name = cls._name_from_lists(cols)
-        name = cls._transform(name)
         # 50% chance to use "name1 of name2" format
         if random.random() * 100 < 50:
             return "of " + name

@@ -19,7 +19,6 @@ class Hobbit(Language):
     def _name2(cls) -> str:
         cols = [hobbit_data["name2_col1"], hobbit_data["name2_col2"]]
         name = cls._name_from_lists(cols)
-        name = cls._transform(name)
         return name
 
 

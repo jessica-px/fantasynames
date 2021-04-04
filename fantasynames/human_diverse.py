@@ -52,7 +52,7 @@ class Human(Language):
                     human_data["name2_col2"],
                 ]
             )
-            name = cls._name_from_lists([col1, col2]).capitalize()
+            name = cls._name_from_lists([col1, col2])
 
         return name
 

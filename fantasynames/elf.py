@@ -25,7 +25,6 @@ class Elf(Language):
             cols = [elf_data["name1_col1"], elf_data["name2_col2"]]
 
         name = cls._name_from_lists(cols)
-        name = cls._transform(name)
         return name
 
 

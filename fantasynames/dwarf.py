@@ -19,7 +19,6 @@ class Dwarf(Language):
     def _name2(cls) -> str:
         cols = [compound_tables["mountain_col1"], compound_tables["mountain_col2"]]
         name = cls._name_from_lists(cols)
-        name = cls._transform(name)
         return name
 
 
