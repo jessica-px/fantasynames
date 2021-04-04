@@ -346,6 +346,11 @@ french_data: t.Dict[str, t.List] = {
         "ffrey",
         "rent",
     ],
+    "name1_female_suffixes": [
+        "a",
+        "ia",
+        "e",
+    ],
     "name2_col1": [
         "nI",
         "vI",
