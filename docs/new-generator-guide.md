@@ -136,4 +136,4 @@ Go ahead and test this out in your terminal to make sure it works.
 
 We have successfully implemented a basic name generator -- but I'm sure you can imagine ways to increase the complexity. We might use different logic for generating male or female names, or have completely different tables that we draw from at random. Go ahead and look at some of the existing name generators for inspiration!
 
-This library also concept called **transformations** that can make your name generation significantly more dynamic. You can read more about this in the [transformation guide](transformation-guide.md).
+This library also has a concept of **transformations**, which are pre-defined string patterns that can make your name generation significantly more dynamic. You can read more about this in the [transformation guide](transformation-guide.md).
