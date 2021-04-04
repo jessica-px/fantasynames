@@ -2,9 +2,6 @@ from fantasynames.data import dwarf_data, compound_tables
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
-# -----------------------------
-#           Dwarf Names
-# -----------------------------
 
 transform_dwarf = define_transform_function(dwarf_data["transformations"])
 

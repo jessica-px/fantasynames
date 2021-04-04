@@ -1,10 +1,6 @@
 from fantasynames.data import hobbit_data
 from fantasynames.helpers import define_transform_function, gen_from_table
 
-# -----------------------------
-#           Hobbit Names
-# -----------------------------
-
 transform_hobbit = define_transform_function(hobbit_data["transformations"])
 
 

@@ -2,9 +2,6 @@ from fantasynames.data import human_data
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
-# -----------------------------
-#           Anglo Names
-# -----------------------------
 transform_anglo = define_transform_function(human_data["transformations"])
 
 

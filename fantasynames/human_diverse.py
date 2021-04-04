@@ -4,10 +4,6 @@ from fantasynames.french import generate_french_name1, generate_french_name2
 from fantasynames.anglo import generate_anglo_name1, generate_anglo_name2
 import random
 
-# -----------------------------
-#           Human Mishmash Names
-# -----------------------------
-
 
 def gen_mishmash_name1() -> str:
     """

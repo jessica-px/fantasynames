@@ -2,9 +2,6 @@ from fantasynames.data import french_data
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
-# -----------------------------
-#           French Names
-# -----------------------------
 transform_french = define_transform_function(french_data["transformations"])
 
 
