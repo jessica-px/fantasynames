@@ -36,11 +36,23 @@ names.human()
 
 Note that `human()` provides a diverse mix of different first and last name styles, including `anglo()` and `french()`...and more!
 
+You can also pass a string argument to specify whether you want to recieve masculine or feminine names. By default, it's totally random:
+
+```python
+names.human() # this will randomly generate either a male or female name
+
+names.human('any') # this is equivalent to the above, in case you want to be specific
+
+names.human('male') # this will generate a masculine name
+
+names.human('female') # this will generate a feminine name
+```
+
 ## Contributing
 
 ### Poetry
 
-This package uses [Poetry](https://python-poetry.org/) for package management. After checking out the repo, use `poetry install` to install all the required dependencies. Anytime you need to add a package, instead of `pip install`, use:
+This package uses [Poetry](https://python-poetry.org/) for package management. After checking out the repo, use `poetry install` to install all the required dependencies. Anytime you need to add a package, use:
 
 ```
 poetry add <PACKAGE_NAME_HERE>
