@@ -1,6 +1,5 @@
 from fantasynames.data import dwarf_data, compound_tables
 from fantasynames.language import Language
-import random
 
 
 class Dwarf(Language):
