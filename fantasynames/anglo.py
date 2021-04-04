@@ -18,7 +18,7 @@ def generate_anglo_name1_base() -> str:
         name = random.choice(human_data["name1_col1"])
     else:
         name = gen_from_table(human_data["name1_col1"], human_data["name1_col2"])
-    return transform_anglo(name).capitalize()
+    return name
 
 
 def generate_anglo_name1_female() -> str:
@@ -26,7 +26,7 @@ def generate_anglo_name1_female() -> str:
     Outputs a randomized "Anglo" first name with a feminine suffix.
     """
     name = generate_anglo_name1_base() + random.choice(human_data["name1_suffixes"])
-    return transform_anglo(name).capitalize()
+    return name
 
 
 def generate_anglo_name1(gender: str = "any") -> str:
@@ -34,18 +34,19 @@ def generate_anglo_name1(gender: str = "any") -> str:
     Outputs a randomized "Anglo" first name with variable gender.
     """
     if gender == "female":
-        return generate_anglo_name1_female()
+        name = generate_anglo_name1_female()
     elif gender == "male":
-        return generate_anglo_name1_base()
+        name = generate_anglo_name1_base()
     elif gender == "any":  # 50% chance of male or female first name
         if random.random() * 100 < 50:
-            return generate_anglo_name1_base()
+            name = generate_anglo_name1_base()
         else:
-            return generate_anglo_name1_female()
+            name = generate_anglo_name1_female()
     else:
         raise ValueError(
             f'Valid string parameters for name generating functions are "female", "male", or "any". The given value was the {type(gender).__name__} "{gender}".'
         )
+    return transform_anglo(name).capitalize()
 
 
 def generate_anglo_name2() -> str:
