@@ -4,7 +4,7 @@ import random
 
 
 class Language(ABC):
-    transformations: t.List[t.Dict]
+    transformations: t.List[t.Dict] = []
 
     @classmethod
     def name(cls, gender: str = "any") -> str:
