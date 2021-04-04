@@ -6,20 +6,17 @@ In this file, we store the various string arrays from which names are generated.
 
 hobbit_data: t.Dict[str, t.List] = {
     "name1_col1": ["BVB", "mVB", "frVB", "flVB", "wVB", "lVB", "BVm"],
-    "name1_col2": [
+    "name1_female_suffixes": ["*a", "*y", "*ia", "lia", "ina", "emina"],
+    "name1_male_suffixes": [
         "*o",
-        "*a",
         "*y",
-        "*in",
         "*ly",
+        "*urt",
+        "*in",
+        "win",
         "ius",
         "lius",
         "nus",
-        "ia",
-        "ina",
-        "emina",
-        "*urt",
-        "win",
     ],
     "name2_col1": [
         "berry",
