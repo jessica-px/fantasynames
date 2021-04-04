@@ -7,7 +7,7 @@ In this library, **transformations** are defined as dictionaries, which, at thei
 - Input: The character upon which this transformation should be performed.
 - Outputs: An array of strings from which we will randomly select a replacement for the Input.
 
-For example, the following transformation tells us to replace all instances of `A` with any other vowel letter. So you can think of `A` as a variable that just means "any vowel".
+For example:
 
 ```python
 new_transformation = {
@@ -16,9 +16,9 @@ new_transformation = {
 }
 ```
 
-If we were to perform this transformation on the string `'bAn'`, we would expect the result to be one of the following: `'ban'`, `'ben'`, `'bin'`, `'bon'`, or `'bun'`.
+This transformation tells us to replace all instances of the character `'A'` with any other vowel letter. So you can think of `'A'` as a variable that just means "any vowel". The choice of character is arbitrary -- we could just as easily use `'X'` or `'9'` or '`&'`. But I think `'A'` feels intuitive here.
 
-(Note that the selection of `A` as the `input` here is arbitrary -- we could just as easily choose `E`, or `9`, or `@` -- but let's just try to stick with something relatively intuitive).
+If we were to perform this transformation on the string `'bAn'`, we would expect the result to be one of the following: `'ban'`, `'ben'`, `'bin'`, `'bon'`, or `'bun'`.
 
 But right now this transformation is just a dictionary -- it doesn't do anything yet. Below, we'll cover the necessary steps to implement functional transformations.
 
