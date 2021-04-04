@@ -23,7 +23,8 @@ def gen_mishmash_name1():
 
 def gen_mishmash_name2():
     """
-    Outputs a randomized "human" surname, which will be either "French", "Anglo", or cobbled together from various tables.
+    Outputs a randomized "human" surname, which will be either
+    "French", "Anglo", or cobbled together from various tables.
     """
     prob = random.random() * 100
     # 20% chance of english surname

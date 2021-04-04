@@ -14,10 +14,10 @@ def define_transform_function(transformations):
 
     def transform_string(string):
         """
-        Given a string, loops over each char. If 'input' is present in one of pre-defined
-        'transformation' dicts, "replaces" it with a randomly selected character from the
-        provided 'outputs' array. Returns a new string with the newly replaced chars.
-        (No actual mutations performed.)
+        Given a string, loops over each char. If 'input' is present in one of
+        pre-defined 'transformation' dicts, "replaces" it with a randomly
+        selected character from the provided 'outputs' array. Returns a new
+        string with the newly replaced chars. (No actual mutations performed.)
 
         Also has the following special rules for special "input" characters:
             - *: repeat the previous character (if present)
