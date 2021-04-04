@@ -145,7 +145,7 @@ dwarf_data: t.Dict[str, t.List] = {
         "muiR",
         "ean",
     ],
-    "name1_suffixes": ["a"],
+    "name1_suffixes": ["a", "ig", "aid", "et", "ja", "is", "ssi"],
     "transformations": [
         {"input": "A", "outputs": ["i", "a", "o", "u"]},  # any vowel
         {"input": "I", "outputs": ["i", "e"]},  # front vowels
