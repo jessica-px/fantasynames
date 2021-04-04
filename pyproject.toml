@@ -10,6 +10,7 @@ repository = "https://github.com/jessypeck/fantasynames"
 python = "^3.7"
 black = "^20.8b1"
 flake8 = "^3.9.0"
+mypy = "^0.812"
 
 [tool.poetry.dev-dependencies]
 
