@@ -91,8 +91,12 @@ class Language(ABC):
                 if char == transformation["input"]:
                     new_char = random.choice(transformation["outputs"])
                     break
+                # "*" doubles previous char if not preceeded by a CVC pattern
                 if char == "*":
-                    new_char = new_string[-1]
+                    if double_consonant(new_string):
+                        new_char = new_string[-1]
+                    else:
+                        new_char = ""
             new_string += new_char
         return new_string
 
@@ -122,3 +126,28 @@ class Language(ABC):
         for string_list in lists:
             name += random.choice(string_list)
         return name
+
+
+# ----------------------
+#        Helpers
+# ----------------------
+
+
+def double_consonant(string: str) -> bool:
+    # the "double consonat rule" means that if the chars preceeding a special character
+    # ("*" in our case) match a consonant-vowel-consonant pattern, we double the
+    # final consonant. This helper function tests for that pattern.
+    # Examples if true: bob*y -> bobby, rin*e -> rinne
+    # Examples if false: rick*y -> ricky, wood*y -> woody
+    if len(string) < 3:
+        return True
+
+    vowels = "aeiou"
+    prev_chars = string[-3:]
+    pattern = ""
+    for char in prev_chars:
+        if char in vowels:
+            pattern += "V"
+        else:
+            pattern += "C"
+    return pattern == "CVC"
