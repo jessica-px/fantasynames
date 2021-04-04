@@ -2,6 +2,10 @@ from fantasynames.data import elf_data, compound_tables
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
+# -----------------------------
+#           Helpers
+# -----------------------------
+
 transform_elf = define_transform_function(elf_data["transformations"])
 
 
@@ -32,6 +36,11 @@ def gen_elf_name2() -> str:
         )
 
     return transform_elf(name).capitalize()
+
+
+# -----------------------------
+#   Name Generating Function
+# -----------------------------
 
 
 def generate_elf_name() -> str:

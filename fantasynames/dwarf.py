@@ -2,6 +2,9 @@ from fantasynames.data import dwarf_data, compound_tables
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
+# -----------------------------
+#           Helpers
+# -----------------------------
 
 transform_dwarf = define_transform_function(dwarf_data["transformations"])
 
@@ -27,6 +30,11 @@ def gen_dwarf_name2() -> str:
         compound_tables["mountain_col1"], compound_tables["mountain_col2"]
     )
     return name.capitalize()
+
+
+# -----------------------------
+#   Name Generating Function
+# -----------------------------
 
 
 def generate_dwarf_name() -> str:

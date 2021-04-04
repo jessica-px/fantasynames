@@ -2,6 +2,10 @@ from fantasynames.data import french_data
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
+# -----------------------------
+#           Helpers
+# -----------------------------
+
 transform_french = define_transform_function(french_data["transformations"])
 
 
@@ -26,6 +30,11 @@ def generate_french_name2() -> str:
         prefix = random.choice(french_data["name2_prefixes"])
         name = prefix + name
     return name
+
+
+# -----------------------------
+#   Name Generating Function
+# -----------------------------
 
 
 def generate_french_name() -> str:

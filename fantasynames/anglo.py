@@ -2,6 +2,10 @@ from fantasynames.data import human_data
 from fantasynames.helpers import define_transform_function, gen_from_table
 import random
 
+# -----------------------------
+#           Helpers
+# -----------------------------
+
 transform_anglo = define_transform_function(human_data["transformations"])
 
 
@@ -34,6 +38,11 @@ def generate_anglo_name2() -> str:
     else:
         name = gen_from_table(human_data["name2_col1"], human_data["name2_col2"])
         return transform_anglo(name).capitalize()
+
+
+# -----------------------------
+#   Name Generating Function
+# -----------------------------
 
 
 def generate_anglo_name() -> str:
