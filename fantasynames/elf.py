@@ -1,42 +1,31 @@
 from fantasynames.data import elf_data, compound_tables
-from fantasynames.helpers import define_transform_function, gen_from_table
+from fantasynames.language import Language
 import random
 
-# -----------------------------
-#           Elf Names
-# -----------------------------
 
-transform_elf = define_transform_function(elf_data["transformations"])
+class Elf(Language):
+    transformations = elf_data["transformations"]
 
+    @classmethod
+    def _name1_male(cls) -> str:
+        cols = [elf_data["name1_col1"], elf_data["name1_col2"]]
+        return cls._name_from_lists(cols)
 
-def gen_elf_name1() -> str:
-    """
-    Outputs a randomized "elf" name. Example outputs:
-    'Ievel', 'Farathon', 'Aidrala', 'Carylon', 'Gwethara'
-    """
-    name = gen_from_table(elf_data["name1_col1"], elf_data["name1_col2"])
-    # 50% chance of adding a suffix
-    if random.random() * 100 < 50:
-        name += random.choice(elf_data["name1_suffixes"])
+    @classmethod
+    def _name1_female(cls) -> str:
+        name = cls._name1_male() + cls._name_from_lists([elf_data["name1_suffixes"]])
+        return name
 
-    return transform_elf(name).capitalize()
+    @classmethod
+    def _name2(cls) -> str:
+        # 50% chance of elf-y surname or nature-y surname
+        if random.random() * 100 < 50:
+            cols = [compound_tables["nature_col1"], compound_tables["nature_col1"]]
+        else:
+            cols = [elf_data["name1_col1"], elf_data["name2_col2"]]
 
-
-def gen_elf_name2() -> str:
-    """
-    Outputs a randomized "elf" surname. Example outputs:
-    'Sunblossom', 'Theviel', 'Fyrion', 'Ieraine', 'Willowthorn'
-    """
-    # 50% chance of using a nature name VS elfy name
-    if random.random() * 100 < 50:
-        name = gen_from_table(elf_data["name1_col1"], elf_data["name2_col2"])
-    else:
-        name = gen_from_table(
-            compound_tables["nature_col1"], compound_tables["nature_col2"]
-        )
-
-    return transform_elf(name).capitalize()
+        name = cls._name_from_lists(cols)
+        return name
 
 
-def generate_elf_name() -> str:
-    return gen_elf_name1() + " " + gen_elf_name2()
+elf = Elf.name

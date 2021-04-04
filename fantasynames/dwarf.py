@@ -1,36 +1,25 @@
 from fantasynames.data import dwarf_data, compound_tables
-from fantasynames.helpers import define_transform_function, gen_from_table
-import random
-
-# -----------------------------
-#           Dwarf Names
-# -----------------------------
-
-transform_dwarf = define_transform_function(dwarf_data["transformations"])
+from fantasynames.language import Language
 
 
-def gen_dwarf_name1() -> str:
-    """
-    Outputs a randomized "dwarf" first name. Example outputs:
-    'Thormer', 'Hothvirda', 'Burmir', 'Ingvola', 'Einrom'
-    """
-    name = gen_from_table(dwarf_data["name1_col1"], dwarf_data["name1_col2"])
-    # 30% chance of adding a suffix
-    if random.random() * 100 < 30:
-        name += random.choice(dwarf_data["name1_suffixes"])
-    return transform_dwarf(name).capitalize()
+class Dwarf(Language):
+    transformations = dwarf_data["transformations"]
+
+    @classmethod
+    def _name1_male(cls) -> str:
+        cols = [dwarf_data["name1_col1"], dwarf_data["name1_col2"]]
+        return cls._name_from_lists(cols)
+
+    @classmethod
+    def _name1_female(cls) -> str:
+        name = cls._name1_male() + cls._name_from_lists([dwarf_data["name1_suffixes"]])
+        return name
+
+    @classmethod
+    def _name2(cls) -> str:
+        cols = [compound_tables["mountain_col1"], compound_tables["mountain_col2"]]
+        name = cls._name_from_lists(cols)
+        return name
 
 
-def gen_dwarf_name2() -> str:
-    """
-    Outputs a randomized "dwarf" surname. Example outputs:
-    'Stonespear', 'Steelbrow', 'Ironmead', 'Proudhelm', 'Battlemace'
-    """
-    name = gen_from_table(
-        compound_tables["mountain_col1"], compound_tables["mountain_col2"]
-    )
-    return name.capitalize()
-
-
-def generate_dwarf_name() -> str:
-    return gen_dwarf_name1() + " " + gen_dwarf_name2()
+dwarf = Dwarf.name

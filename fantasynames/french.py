@@ -1,35 +1,32 @@
 from fantasynames.data import french_data
-from fantasynames.helpers import define_transform_function, gen_from_table
 import random
-
-# -----------------------------
-#           French Names
-# -----------------------------
-transform_french = define_transform_function(french_data["transformations"])
+from fantasynames.language import Language
 
 
-def generate_french_name1() -> str:
-    """
-    Outputs a randomized "French" name. Example outputs:
-    'Lureit', 'Isera', 'Clesont', 'Ileau', 'Anasande'
-    """
-    name = gen_from_table(french_data["name1_col1"], french_data["name1_col2"])
-    return transform_french(name).capitalize()
+class French(Language):
+    transformations = french_data["transformations"]
+
+    @classmethod
+    def _name1_male(cls) -> str:
+        cols = [french_data["name1_col1"], french_data["name1_col2"]]
+        return cls._name_from_lists(cols)
+
+    @classmethod
+    def _name1_female(cls) -> str:
+        name = cls._name1_male() + cls._name_from_lists(
+            [french_data["name1_female_suffixes"]]
+        )
+        return name
+
+    @classmethod
+    def _name2(cls) -> str:
+        cols = [french_data["name2_col1"], french_data["name2_col2"]]
+        name = cls._name_from_lists(cols)
+        # 50% chance to use "name1 d' name2" or "name1 du name2" format
+        if random.random() * 100 <= 30:
+            prefix = random.choice(french_data["name2_prefixes"])
+            name = prefix + name
+        return name
 
 
-def generate_french_name2() -> str:
-    """
-    Outputs a randomized "French" surname. Example outputs:
-    'Loubec', 'Rouville', 'Collefluer', 'd'Leauvcourt', 'du Berchatel'
-    """
-    name = gen_from_table(french_data["name2_col1"], french_data["name2_col2"])
-    name = transform_french(name).capitalize()
-    # 30% chance of d' prefix
-    if random.random() * 100 <= 30:
-        prefix = random.choice(french_data["name2_prefixes"])
-        name = prefix + name
-    return name
-
-
-def generate_french_name() -> str:
-    return generate_french_name1() + " " + generate_french_name2()
+french = French.name

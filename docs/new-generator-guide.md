@@ -37,66 +37,87 @@ snake_data = {
 
 Since `name2` follows a compound word pattern, we could also store its data in the already existing `compound_tables` dictionary instead. But `compound_tables` is meant for fairly generic, reusable compound names, and these names seem highly specific to snake people. So for now, there's no harm in just keeping them in `snake_data`. Use your own judgement here.
 
-## 3. Create a python module
+## 3. Create a python module and Language subclass
 
 Inside the `fantasynames` directory, let's create a file for our new name generator. Since it's a snake language, we'll simply call it `snake.py`.
 
-The most important thing this file will do is define the final name generating function. But it's convenient to also store helper functions here, like functions for generating first and last names. Here's an outline:
+Our snake name generator will subclassed from the `Language` class, which comes pre-baked with a lot of the logic we'll be needing. We only have to override a few methods and everything should Just Work. Here's a basic template:
 
 ```python
 # snake.py
+from fantasynames.language import Language
 
-def generate_snake_name1():
-    # return a randomized first name
+class Snake(Language):
 
-def generate_snake_name2():
-    # return a randomized last name
+    @classmethod
+    def _name1_male(cls) -> str:
+        # this should return a male first name
 
-def generate_snake_name():
-    return generate_snake_name1() + " " + generate_snake_name2()
+    @classmethod
+    def _name1_female(cls) -> str:
+        # this should return a female first name
+
+    @classmethod
+    def _name2(cls) -> str:
+        # this should return a surname
+
 ```
-
-`generate_snake_name()` is the main star of this file, but the helper functions will do all the heavy lifting.
 
 ## 4. Write name generating logic
 
-Let's flesh out those helper functions in `snake.py`. We want them to randomly pull from the tables we defined in `data.py` -- luckily, since this is an operation we do frequently in this codebase, we already have a helper function defined for that. If we pass two arrays to `gen_from_table()`, it will randomly select a string from each of them and combine them. Don't forget to capitalize your name before returning it!
+Let's flesh out those methods in `snake.py`. We want them to randomly pull from the tables we defined in `data.py` -- luckily, since this is an operation we do frequently in this codebase, there's already a helper method baked into the class to make this easier! If you pass `cls._name_from_lists` a list of lists, it will randomly select a string from each one and give you the combined result.
+
+For simplicity, let's say these snake people don't have gendered names. So `_name1_female()` will just return the same thing as `_name1_male()`.
 
 ```python
 # snake.py
-from data import snake_data
-from helpers import gen_from_table
+from fantasynames.language import Language
+from fantasynames.data import snake_data
 
-def generate_snake_name1():
-    name = gen_from_table(snake_data.name1_col1, snake_data.name1_col2)
-    return name.capitalize()
+class Snake(Language):
 
-def generate_snake_name2():
-    name = gen_from_table(snake_data.name2_col1, snake_data.name2_col2)
-    return name.capitalize()
+    @classmethod
+    def _name1_male(cls) -> str:
+        return cls._name_from_lists([snake_data["name1_col1"], snake_data["name1_col2"]])
 
-def generate_snake_name():
-    return generate_snake_name1() + " " + generate_snake_name2()
+    @classmethod
+    def _name1_female(cls) -> str:
+        return cls._name1_male()
+
+    @classmethod
+    def _name2(cls) -> str:
+        return cls._name_from_lists([snake_data["name2_col1"], snake_data["name2_col2"]])
 ```
 
-Now our name-generating function is fully functional! If we call `generate_snake_name()` we should get outputs just like we initially predicted: `Silisus Poisonfang`, `Ssela Bloodscale`, `Ssisasa Deathtongue`, etc.
+Now our name generator is fully functional! Because these are [class methods](https://pythonbasics.org/classmethod/), we don't even need to instantiate the class to use it. We can just call `Snake.name()` and it'll use the methods we just defined to give us the kind of outputs we wanted: `Silisus Poisonfang`, `Ssela Bloodscale`, `Ssisasa Deathtongue`, etc.
+
+And don't worry about capitalization -- the `Language` class takes care of that step for us in its `_capitalize()` method.
 
 ## 5. Add function to `__init__.py`
 
-The users of this library won't have easy access to this function until we add an import to `fantasynames/__init__.py`. The convention is pretty straightforward -- import your name-generating function `as` something simple (ideally whatever you named your `.py` module). In our case, it would look like this:
+The users of this library won't have easy access to this method until we add an import to `fantasynames/__init__.py`. To make everything extra convenient, we'll assign the method to a variable at the bottom of our module, like this:
+
+```python
+# snake.py
+from fantasynames.language import Language
+from fantasynames.data import snake_data
+
+class Snake(Language):
+    # content removed for brevity
+
+snake = Snake.name() # <-- this is what we're adding
+```
+
+Then we can import it in `__init__.py` like this:
 
 ```python
 # __init__.py
-from fantasynames.snake import generate_snake_name as snake
+from fantasynames.snake import snake
 ```
 
-## 6. Update `README.md`
+## 6. Test it out!
 
-`README.md` contains examples of all of the name-generating functions that we want exposed to our users -- which includes the one we just made! Be sure to add your new function to the list.
-
-## 7. Done! Or are we...?
-
-We have now implemented a basic name generator! A user of this library can use our function as follows:
+Users of this library should now be able to use this method as follows:
 
 ```python
 import fantasynames as names
@@ -105,6 +126,14 @@ print(names.snake())
 # Possible output: `Silisus Poisonfang`, `Ssela Bloodscale`, `Ssisasa Deathtongue`, etc
 ```
 
-But we could get substantially more complex than this, if we wanted to. For one thing, I'm sure you can envision adding more logic to our name-generating helpers -- like adding a chance to draw a suffix or title from an additional array (perhaps we want to see _Lady_ Ssila Deathscale!), or perhaps using another table entirely (one for masculine names, one for feminine names?), etc.
+Go ahead and test this out in your terminal to make sure it works.
 
-But this library also has a concept called **transformations** that can have very dynamic impacts on the kinds of names we generate. If you're interested, read more about this in the [transformation guide](transformation-guide.md).
+## 6. Update `README.md`
+
+`README.md` contains examples of all of the name-generating functions that we want exposed to our users -- which includes the one we just made! Be sure to add your new function to the list so everyone knows it exists.
+
+## 7. Done! Or are we...?
+
+We have successfully implemented a basic name generator -- but I'm sure you can imagine ways to increase the complexity. We might use different logic for generating male or female names, or have completely different tables that we draw from at random. Go ahead and look at some of the existing name generators for inspiration!
+
+This library also concept called **transformations** that can make your name generation significantly more dynamic. You can read more about this in the [transformation guide](transformation-guide.md).

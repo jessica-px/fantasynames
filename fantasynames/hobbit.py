@@ -1,30 +1,25 @@
 from fantasynames.data import hobbit_data
-from fantasynames.helpers import define_transform_function, gen_from_table
-
-# -----------------------------
-#           Hobbit Names
-# -----------------------------
-
-transform_hobbit = define_transform_function(hobbit_data["transformations"])
+from fantasynames.language import Language
 
 
-def gen_hobbit_name1() -> str:
-    """
-    Outputs a randomized "hobbit" name. Example outputs:
-    'Wuddin', 'Flobina', 'Mablius', 'Loddly', 'Fruppo'
-    """
-    name = gen_from_table(hobbit_data["name1_col1"], hobbit_data["name1_col2"])
-    return transform_hobbit(name).capitalize()
+class Hobbit(Language):
+    transformations = hobbit_data["transformations"]
+
+    @classmethod
+    def _name1_male(cls) -> str:
+        cols = [hobbit_data["name1_col1"], hobbit_data["name1_male_suffixes"]]
+        return cls._name_from_lists(cols)
+
+    @classmethod
+    def _name1_female(cls) -> str:
+        cols = [hobbit_data["name1_col1"], hobbit_data["name1_female_suffixes"]]
+        return cls._name_from_lists(cols)
+
+    @classmethod
+    def _name2(cls) -> str:
+        cols = [hobbit_data["name2_col1"], hobbit_data["name2_col2"]]
+        name = cls._name_from_lists(cols)
+        return name
 
 
-def gen_hobbit_name2() -> str:
-    """
-    Outputs a randomized "hobbit" surname. Example outputs:
-    'Applefeet', 'Honeybiscuits', 'Rumbletum', 'Wimblepipe', 'Fiddlefoot'
-    """
-    name = gen_from_table(hobbit_data["name2_col1"], hobbit_data["name2_col2"])
-    return transform_hobbit(name).capitalize()
-
-
-def generate_hobbit_name() -> str:
-    return gen_hobbit_name1() + " " + gen_hobbit_name2()
+hobbit = Hobbit.name

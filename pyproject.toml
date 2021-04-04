@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fantasynames"
-version = "0.0.2"
+version = "0.1.0"
 description="A fantasy themed random name generator."
 authors = ["Jessica Peck <jessypeck@gmail.com>"]
 homepage = "https://github.com/jessypeck/fantasynames"
