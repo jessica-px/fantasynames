@@ -17,6 +17,8 @@ jobs:
 
       - name: Install Poetry
         uses: Gr1N/setup-poetry@v4
+
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.cache/pypoetry/virtualenvs
