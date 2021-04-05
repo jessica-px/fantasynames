@@ -82,7 +82,7 @@ class Language(ABC):
         replaced chars. (No actual mutations performed.)
 
         Also has the following special rules for special "input" characters:
-            - *: repeat the previous character
+            - *: doubles previous char if not preceeded by a CVC pattern
         """
         new_string = ""
         for char in name:
