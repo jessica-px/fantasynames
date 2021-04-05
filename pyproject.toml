@@ -5,6 +5,7 @@ description="A fantasy themed random name generator."
 authors = ["Jessica Peck <jessypeck@gmail.com>"]
 homepage = "https://github.com/jessypeck/fantasynames"
 repository = "https://github.com/jessypeck/fantasynames"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
