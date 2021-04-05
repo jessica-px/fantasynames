@@ -8,9 +8,13 @@ A random name generator that produces names aligning (more or less) with common 
 
 `python3 -m pip install fantasynames`
 
+Or if your project is using Poetry:
+
+`poetry add fantasynames`
+
 ## Usage
 
-The following name generating functions are provided for a variety of different stereotypical fantasy "races", as well as a few different "medieval-y" languages:
+The following name generating methods are provided for a variety of different stereotypical fantasy "races", as well as a few different "medieval-y" languages:
 
 ```python
 import fantasynames as names
@@ -55,12 +59,12 @@ names.human('female') # this will generate a feminine name
 This package uses [Poetry](https://python-poetry.org/) for package management. After checking out the repo, use `poetry install` to install all the required dependencies. Anytime you need to add a package, use:
 
 ```
-poetry add <PACKAGE_NAME_HERE>
+poetry add PACKAGE_NAME_HERE
 ```
 
 ### Linting / Formatting
 
-We do code formatting with [Python Black](https://github.com/psf/black), other linting with `flake8`, and type checking with `mypy`. Before opening a PR, please make sure to run all of these. Below is a helpful command to do them all at once:
+We do code formatting with [Python Black](https://github.com/psf/black), additional linting with [flake8](https://flake8.pycqa.org/en/latest/manpage.html), and type checking with [mypy](http://mypy-lang.org/). Before opening a PR, please make sure to run all of these. Below is a helpful command to do them all at once:
 
 ```
 poetry run black fantasynames && poetry run flake8 fantasynames && poetry run mypy fantasynames
@@ -68,4 +72,8 @@ poetry run black fantasynames && poetry run flake8 fantasynames && poetry run my
 
 ### Guides
 
-For guides on how to make your own name generators, check out the [How to Add a New Name Generator Guide](docs/new-generator-guide.md). And then if you want to ramp up the complexity, take a look at the [Transformation Guide](docs/transformation-guide.md).
+If you want to make your own name generators, check out:
+- [How to Add a New Name Generator Guide](docs/new-generator-guide.md)
+
+And then if you want to ramp up the complexity, take a look at:
+- [Transformation Guide](docs/transformation-guide.md)
