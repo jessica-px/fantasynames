@@ -87,16 +87,17 @@ class Language(ABC):
         new_string = ""
         for char in name:
             new_char = char
+            # "*" doubles previous char if not preceeded by a CVC pattern
+            if char == "*":
+                if double_consonant(new_string):
+                    new_char = new_string[-1]
+                else:
+                    new_char = ""
+            # checks is character is in given transformations
             for transformation in cls.transformations:
                 if char == transformation["input"]:
                     new_char = random.choice(transformation["outputs"])
                     break
-                # "*" doubles previous char if not preceeded by a CVC pattern
-                if char == "*":
-                    if double_consonant(new_string):
-                        new_char = new_string[-1]
-                    else:
-                        new_char = ""
             new_string += new_char
         return new_string
 
