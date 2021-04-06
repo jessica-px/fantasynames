@@ -55,6 +55,7 @@ hobbit_data: t.Dict[str, t.List] = {
         "fiddle",
         "tickle",
         "bubble",
+        "brandy",
     ],
     "name2_col2": [
         "muffins",
@@ -79,6 +80,7 @@ hobbit_data: t.Dict[str, t.List] = {
         "sticks",
         "stack",
         "thorp",
+        "buck",
     ],
     "transformations": [
         {"input": "B", "outputs": ["t", "d", "b", "p"]},
