@@ -1,4 +1,3 @@
-import pytest
 from fantasynames.language import Language
 
 # This file tests to make sure the basic process for name generation

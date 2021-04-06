@@ -1,4 +1,3 @@
-import pytest
 from fantasynames.language import Language
 
 # This file test to make sure capitalization and special transformation
