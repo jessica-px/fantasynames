@@ -4,22 +4,17 @@ from fantasynames.language import Language
 # This file tests to make sure the basic process for name generation
 # works as expected.
 
-name1_col1 = ['lY']
-name1_col2 = ['n']
-name1_female_suffixes = ['a']
-name2_col1 = ['Ux']
-name2_col2 = ['tUn']
+name1_col1 = ["lY"]
+name1_col2 = ["n"]
+name1_female_suffixes = ["a"]
+name2_col1 = ["Ux"]
+name2_col2 = ["tUn"]
 
 test_tranformations = [
-    {
-        'input': 'Y',
-        'outputs': ['e']
-    },
-    {
-        'input': 'U',
-        'outputs': ['o']
-    },
+    {"input": "Y", "outputs": ["e"]},
+    {"input": "U", "outputs": ["o"]},
 ]
+
 
 class TestLanguage(Language):
     transformations = test_tranformations
@@ -40,14 +35,17 @@ class TestLanguage(Language):
         name = cls._name_from_lists(cols)
         return name
 
+
 def test_name():
     name = TestLanguage.name()
     assert name == "Lena Oxton" or name == "Len Oxton"
 
+
 def test_male_name():
-    name = TestLanguage.name('male')
+    name = TestLanguage.name("male")
     assert name == "Len Oxton"
 
+
 def test_female_name():
-    name = TestLanguage.name('female')
+    name = TestLanguage.name("female")
     assert name == "Lena Oxton"
