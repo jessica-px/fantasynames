@@ -104,7 +104,7 @@ elf_data: t.Dict[str, t.List] = {
         "cA",
     ],
     "name1_col2": ["drAl", "thAn", "vAl", "rAth", "thAr", "rAn", "rAl", "nAl"],
-    "name1_suffixes": ["a", "ia", "on", "ys"],
+    "name1_female_suffixes": ["a", "ia", "ys", "yn"],
     "name2_col2": [
         "Nther",
         "Nion",
@@ -162,14 +162,14 @@ dwarf_data: t.Dict[str, t.List] = {
         "dr",
         "dinn",
         "inn",
-        "sten"
+        "sten",
     ],
     "name1_col2_female": ["et", "ja", "is", "i", "ssi", "da"],
     "name1_female_suffixes": ["a"],
     "transformations": [
         {"input": "A", "outputs": ["i", "a", "o", "u"]},  # any vowel
         {"input": "R", "outputs": ["l", "r"]},
-        {"input": "B", "outputs": ["b", "d", "h"]}
+        {"input": "B", "outputs": ["b", "d", "h"]},
     ],
 }
 
