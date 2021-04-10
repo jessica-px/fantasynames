@@ -23,13 +23,13 @@ names.elf()
 # Example outputs: 'Farathia Eaviel', 'Iethian Willowblossom'
 
 names.dwarf()
-# Example outputs: 'Thrunnor Ironfury', 'Lothuna Strongmail'
+# Example outputs: 'Dagdr Steelbeard', 'Thorinna Ironstrike'
 
 names.hobbit()
 # Example outputs: 'Libby Honeyfoot', 'Flublius Sweetscone'
 
 names.french()
-# Example outputs: 'Auland Roublac', 'Rondri de Clardalle'
+# Example outputs: 'Richert Roublac', 'Clavena de Clardalle'
 
 names.anglo()
 # Example outputs: 'Brandin of Avonlyn', 'Kallem Davenmere'

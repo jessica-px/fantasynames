@@ -1,5 +1,6 @@
 from fantasynames.data import dwarf_data, compound_tables
 from fantasynames.language import Language
+import random
 
 
 class Dwarf(Language):
@@ -12,7 +13,13 @@ class Dwarf(Language):
 
     @classmethod
     def _name1_female(cls) -> str:
-        name = cls._name1_male() + cls._name_from_lists([dwarf_data["name1_suffixes"]])
+        # 50% to add "-a" to a male name
+        if random.random() * 100 < 50:
+            name = cls._name1_male() + "a"
+        # 50% chance to use female col for second half of name
+        else:
+            cols = [dwarf_data["name1_col1"], dwarf_data["name1_col2_female"]]
+            name = cls._name_from_lists(cols)
         return name
 
     @classmethod
