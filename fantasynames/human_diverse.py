@@ -27,13 +27,13 @@ class Human(Language):
     @classmethod
     def _name2(cls) -> str:
         prob = random.random() * 100
-        # 20% chance of anglo surname
-        if prob <= 20:
+        # 25% chance of anglo surname
+        if prob <= 25:
             name = Anglo._name2()
-        # 20% chance of french surname
-        elif prob <= 40:
+        # 25% chance of french surname
+        elif prob <= 50:
             name = French._name2()
-        # 60% chance surname is cobbled together from various tables
+        # 50% chance surname is cobbled together from various tables
         else:
             col1 = random.choice(
                 [
