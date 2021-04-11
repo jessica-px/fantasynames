@@ -8,17 +8,29 @@ class Anglo(Language):
 
     @classmethod
     def _name1_male(cls) -> str:
-        # 50% chance of just using one col (aka one syllable)
-        if random.random() * 100 < 50:
-            cols = [human_data["name1_col1"]]
-        else:
+        prob = random.random() * 100
+        # 50% chance to use col1 + col2
+        if prob < 50:
             cols = [human_data["name1_col1"], human_data["name1_col2"]]
+        # 50% chance to use col1 + a male suffix
+        else:
+            cols = [human_data["name1_col1"], human_data["name1_male_suffixes"]]
         return cls._name_from_lists(cols)
 
     @classmethod
     def _name1_female(cls) -> str:
-        name = cls._name1_male() + cls._name_from_lists([human_data["name1_suffixes"]])
-        return name
+        prob = random.random() * 100
+        # 50% chance of just using col1 + female suffix
+        if prob < 50:
+            cols = [human_data["name1_col1"], human_data["name1_female_suffixes"]]
+        # 50% chance of col1 + col2 + female suffix
+        else:
+            cols = [
+                human_data["name1_col1"],
+                human_data["name1_col2"],
+                human_data["name1_female_suffixes"],
+            ]
+        return cls._name_from_lists(cols)
 
     @classmethod
     def _name2(cls) -> str:
