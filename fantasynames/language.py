@@ -87,11 +87,21 @@ class Language(ABC):
         new_string = ""
         for char in name:
             new_char = char
+            prev_char = new_string[-1] if len(new_string) > 0 else ""
+            prev_prev_char = new_string[-2] if len(new_string) > 1 else ""
+
             # "*" doubles previous char if not preceeded by a CVC pattern
             if char == "*":
                 if double_consonant(new_string):
-                    new_char = new_string[-1]
+                    new_char = prev_char
                 else:
+                    new_char = ""
+            # "&" removes preceeding char if it's preceeded by a consontant
+            if char == "&":
+                if is_vowel(prev_prev_char):
+                    new_char = ""
+                else:
+                    new_string = new_string[:-1]
                     new_char = ""
             # checks is character is in given transformations
             for transformation in cls.transformations:
