@@ -134,6 +134,11 @@ class Language(ABC):
 # ----------------------
 
 
+def is_vowel(char: str) -> bool:
+    vowels = ["a", "e", "i", "o", "u"]
+    return char in vowels
+
+
 def double_consonant(string: str) -> bool:
     # the "double consonat rule" means that if the chars preceeding a special character
     # ("*" in our case) match a consonant-vowel-consonant pattern, we double the
