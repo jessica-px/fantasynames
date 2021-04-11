@@ -87,11 +87,31 @@ class Language(ABC):
         new_string = ""
         for char in name:
             new_char = char
+            prev_char = new_string[-1] if len(new_string) > 0 else ""
+            prev_prev_char = new_string[-2] if len(new_string) > 1 else ""
+
             # "*" doubles previous char if not preceeded by a CVC pattern
+            # Ex: 'wil' + '*and' -> "willand", "wald" + '*and' -> 'waldan'
             if char == "*":
                 if double_consonant(new_string):
-                    new_char = new_string[-1]
+                    new_char = prev_char
                 else:
+                    new_char = ""
+            # "&" removes preceeding char if it's preceeded by a consontant
+            # Ex: 'ia' + 'l&er' -> 'ialer', 'sand' + 'l&er' -> 'sander'
+            if char == "&":
+                if is_vowel(prev_prev_char):
+                    new_char = ""
+                else:
+                    new_string = new_string[:-1]
+                    new_char = ""
+            # "#" removes preceeding char unless it's preceeded by a plosive
+            # Ex: 'and' + 'r#e' -> 'andre', 'sir' + 'r#e' -> 'sire'
+            if char == "#":
+                if prev_prev_char in "pbdtkgc":
+                    new_char = ""
+                else:
+                    new_string = new_string[:-1]
                     new_char = ""
             # checks is character is in given transformations
             for transformation in cls.transformations:
@@ -134,6 +154,11 @@ class Language(ABC):
 # ----------------------
 
 
+def is_vowel(char: str) -> bool:
+    vowels = ["a", "e", "i", "o", "u"]
+    return char in vowels
+
+
 def double_consonant(string: str) -> bool:
     # the "double consonat rule" means that if the chars preceeding a special character
     # ("*" in our case) match a consonant-vowel-consonant pattern, we double the
@@ -143,11 +168,10 @@ def double_consonant(string: str) -> bool:
     if len(string) < 3:
         return True
 
-    vowels = "aeiou"
     prev_chars = string[-3:]
     pattern = ""
     for char in prev_chars:
-        if char in vowels:
+        if is_vowel(char):
             pattern += "V"
         else:
             pattern += "C"

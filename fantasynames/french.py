@@ -8,13 +8,22 @@ class French(Language):
 
     @classmethod
     def _name1_male(cls) -> str:
-        cols = [french_data["name1_col1"], french_data["name1_col2"]]
+        # 50% chance col1 + col2
+        if random.random() * 100 <= 50:
+            cols = [french_data["name1_col1"], french_data["name1_col2"]]
+        # 50% chance col1 + male suffix
+        else:
+            cols = [french_data["name1_col1"], french_data["name1_male_suffixes"]]
         return cls._name_from_lists(cols)
 
     @classmethod
     def _name1_female(cls) -> str:
-        name = cls._name1_male() + cls._name_from_lists(
-            [french_data["name1_female_suffixes"]]
+        name = cls._name_from_lists(
+            [
+                french_data["name1_col1"],
+                french_data["name1_col2"],
+                french_data["name1_female_suffixes"],
+            ]
         )
         return name
 
