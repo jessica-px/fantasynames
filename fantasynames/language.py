@@ -148,11 +148,10 @@ def double_consonant(string: str) -> bool:
     if len(string) < 3:
         return True
 
-    vowels = "aeiou"
     prev_chars = string[-3:]
     pattern = ""
     for char in prev_chars:
-        if char in vowels:
+        if is_vowel(char):
             pattern += "V"
         else:
             pattern += "C"
