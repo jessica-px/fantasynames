@@ -105,6 +105,14 @@ class Language(ABC):
                 else:
                     new_string = new_string[:-1]
                     new_char = ""
+            # "#" removes preceeding char unless it's preceeded by a plosive
+            # Ex: 'and' + 'r#e' -> 'andre', 'sir' + 'r#e' -> 'sire'
+            if char == "#":
+                if prev_prev_char in "pbdtkgc":
+                    new_char = ""
+                else:
+                    new_string = new_string[:-1]
+                    new_char = ""
             # checks is character is in given transformations
             for transformation in cls.transformations:
                 if char == transformation["input"]:
