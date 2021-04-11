@@ -91,12 +91,14 @@ class Language(ABC):
             prev_prev_char = new_string[-2] if len(new_string) > 1 else ""
 
             # "*" doubles previous char if not preceeded by a CVC pattern
+            # Ex: 'wil' + '*and' -> "willand", "wald" + '*and' -> 'waldan'
             if char == "*":
                 if double_consonant(new_string):
                     new_char = prev_char
                 else:
                     new_char = ""
             # "&" removes preceeding char if it's preceeded by a consontant
+            # Ex: 'ia' + 'l&er' -> 'ialer', 'sand' + 'l&er' -> 'sander'
             if char == "&":
                 if is_vowel(prev_prev_char):
                     new_char = ""
