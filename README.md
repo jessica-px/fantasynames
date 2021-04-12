@@ -62,12 +62,18 @@ This package uses [Poetry](https://python-poetry.org/) for package management. A
 poetry add PACKAGE_NAME_HERE
 ```
 
-### Linting / Formatting
+### CI
 
 We do code formatting with [Python Black](https://github.com/psf/black), additional linting with [flake8](https://flake8.pycqa.org/en/latest/manpage.html), and type checking with [mypy](http://mypy-lang.org/). Before opening a PR, please make sure to run all of these. Below is a helpful command to do them all at once:
 
 ```
 poetry run black fantasynames && poetry run flake8 fantasynames && poetry run mypy fantasynames
+```
+
+We also run some tests with pytest:
+
+```
+poetry run pytest
 ```
 
 ### Guides
