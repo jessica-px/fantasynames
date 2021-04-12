@@ -126,7 +126,7 @@ print(names.snake())
 # Possible output: `Silisus Poisonfang`, `Ssela Bloodscale`, `Ssisasa Deathtongue`, etc
 ```
 
-Go ahead and test this out in your terminal to make sure it works.
+Go ahead and test this out in the Python shell to make sure it works.
 
 ## 6. Update `README.md`
 
