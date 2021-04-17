@@ -1,4 +1,4 @@
-from fantasynames.data import human_data, compound_tables
+from fantasynames.data import anglo_data, compound_tables
 from fantasynames.language import Language
 from fantasynames.anglo import Anglo
 from fantasynames.french import French
@@ -49,7 +49,7 @@ class Human(Language):
                     compound_tables["nature_col2"],
                     compound_tables["generic_col2"],
                     compound_tables["generic_col2"],
-                    human_data["name2_col2"],
+                    anglo_data["name2_col2"],
                 ]
             )
             name = cls._name_from_lists([col1, col2])

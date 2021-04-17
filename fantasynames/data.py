@@ -173,7 +173,7 @@ dwarf_data: t.Dict[str, t.List] = {
     ],
 }
 
-human_data: t.Dict[str, t.List] = {
+anglo_data: t.Dict[str, t.List] = {
     "name1_col1": [
         "AR",
         "kAR",
