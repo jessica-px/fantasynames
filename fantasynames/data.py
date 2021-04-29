@@ -173,6 +173,27 @@ dwarf_data: t.Dict[str, t.List] = {
     ],
 }
 
+orc_data: t.Dict[str, t.List] = {
+    "name1_col1": [
+        "RAG",
+        "MAR",
+        "zAG",
+        "GrAG"
+    ],
+    "name1_col2": [
+        "AG*",
+        "Ash",
+        "nAth",
+        "dArm"
+    ],
+    "transformations": [
+        {"input": "A", "outputs": ["a", "o", "u"]},
+        {"input": "G", "outputs": ["k", "g"]},
+        {"input": "M", "outputs": ["m", "n"]},
+        {"input": "R", "outputs": ["r", "l"]}
+    ]
+}
+
 anglo_data: t.Dict[str, t.List] = {
     "name1_col1": [
         "AR",
