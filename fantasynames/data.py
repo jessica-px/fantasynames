@@ -186,6 +186,16 @@ orc_data: t.Dict[str, t.List] = {
         "nAth",
         "dArm"
     ],
+    "name2_col1": [
+        "thA",
+        "GA",
+        "GRiM"
+    ],
+    "name2_col2": [
+        "AR",
+        "RAd",
+        "GAR"
+    ],
     "transformations": [
         {"input": "A", "outputs": ["a", "o", "u"]},
         {"input": "G", "outputs": ["k", "g"]},
