@@ -195,7 +195,7 @@ orc_data: t.Dict[str, t.List] = {
         "nek",
         "nAz",
         "GoRe",
-        "drAn"
+        "drAn",
     ],
     "name1_col2": [
         "AG*",
@@ -217,7 +217,7 @@ orc_data: t.Dict[str, t.List] = {
         "RoGG",
         "RAs",
         "Grel",
-        "dAR"
+        "dAR",
     ],
     "name2_col1": [
         "kill",
@@ -248,14 +248,14 @@ orc_data: t.Dict[str, t.List] = {
         "shout",
         "foot",
         "sheild",
-        "sword"
+        "sword",
     ],
     "transformations": [
         {"input": "A", "outputs": ["a", "o", "u"]},
         {"input": "G", "outputs": ["k", "g"]},
         {"input": "M", "outputs": ["m", "n"]},
-        {"input": "R", "outputs": ["r", "l"]}
-    ]
+        {"input": "R", "outputs": ["r", "l"]},
+    ],
 }
 
 anglo_data: t.Dict[str, t.List] = {
