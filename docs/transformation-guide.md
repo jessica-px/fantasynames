@@ -26,12 +26,12 @@ But right now this transformation is just a dictionary -- it doesn't do anything
 
 Let's walk through how we might add transformations to the snake language we made in the [How to Add a New Name Generator Guide](new-generator-guide.md). First, we need to decide what these transformations will be. Let's revisit one of the tables we created:
 
-| name1_col1| name1_col2  |
-|-----|-------|
-| si  | sasa  |
-| sha | la    |
-| ssi | lisus |
-| sse | shass |
+| name1_col1 | name1_col2 |
+|------------|------------|
+| si         | sasa       |
+| sha        | la         |
+| ssi        | lisus      |
+| sse        | shass      |
 
 Now that we're thinking with transformations, we can find ways to simplify this. For example, `'ssi'` and `'sse'` differ only by one vowel -- maybe instead we should just use something like `'ssE'`, where `'E'` can be replaced by either `'a'`, `'e'`, or `'i'` (these are, in my opinion, snake-y sounding vowels). That would require a transformation like this:
 
@@ -83,12 +83,12 @@ Our transformations only work on specific characters (let's try to keep them in 
 
 With these transformations in mind, I want my new table to look like this:
 
-| name1_col1| name1_col2  |
-|-----|-------|
-| SE  | SESE  |
-|     | lE    |
-|     | lEsus |
-|     | SES |
+| name1_col1 | name1_col2 |
+|------------|------------|
+| SE         | SESE       |
+|            | lE         |
+|            | lEsus      |
+|            | SES        |
 
 Which would make our entry in `data.py` look like this:
 

@@ -4,19 +4,19 @@
 
 At their most basic, the names we generate can be visualized as tables from which we randomly smash together items in different columns. So, let's say we want to make a naming language for evil snake people. We might envision tables like this:
 
-| name1_col1| name1_col2  |
-|-----|-------|
-| si  | sasa  |
-| sha | la    |
-| ssi | lisus |
-| sse | shass |
+| name1_col1 | name1_col2 |
+|------------|------------|
+| si         | sasa       |
+| sha        | la         |
+| ssi        | lisus      |
+| sse        | shass      |
 
-| name2_col1| name2_col2  |
-|-----|-------|
-| poison  | tongue  |
-| death | scale    |
-| blood | fang |
-| night | tail |
+| name2_col1 | name2_col2 |
+|------------|------------|
+| poison     | tongue     |
+| death      | scale      |
+| blood      | fang       |
+| night      | tail       |
 
 By randomly picking things from column 1 and pairing them with things in column 2, we should be able to generate names like `Silisus Poisonfang`, `Ssela Bloodscale`, and `Ssisasa Deathtongue` -- seems suitable for evil snake people, right?
 
