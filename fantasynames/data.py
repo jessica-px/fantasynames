@@ -1,10 +1,8 @@
-import typing as t
-
 """
 In this file, we store the various string arrays from which names are generated.
 """
 
-hobbit_data: t.Dict[str, t.List] = {
+hobbit_data: dict[str, list] = {
     "name1_col1": [
         "BVB",
         "mVB",
@@ -88,7 +86,7 @@ hobbit_data: t.Dict[str, t.List] = {
     ],
 }
 
-elf_data: t.Dict[str, t.List] = {
+elf_data: dict[str, list] = {
     "name1_col1": [
         "RA",
         "gA",
@@ -125,7 +123,7 @@ elf_data: t.Dict[str, t.List] = {
     ],
 }
 
-dwarf_data: t.Dict[str, t.List] = {
+dwarf_data: dict[str, list] = {
     "name1_col1": [
         "al",
         "an",
@@ -173,7 +171,7 @@ dwarf_data: t.Dict[str, t.List] = {
     ],
 }
 
-anglo_data: t.Dict[str, t.List] = {
+anglo_data: dict[str, list] = {
     "name1_col1": [
         "AR",
         "kAR",
@@ -319,7 +317,7 @@ anglo_data: t.Dict[str, t.List] = {
     ],
 }
 
-french_data: t.Dict[str, t.List] = {
+french_data: dict[str, list] = {
     "name1_col1": [
         "IN",
         "IB",
@@ -406,7 +404,7 @@ french_data: t.Dict[str, t.List] = {
     ],
 }
 
-compound_tables: t.Dict[str, t.List] = {
+compound_tables: dict[str, list] = {
     "nature_col1": [
         "green",
         "mist",

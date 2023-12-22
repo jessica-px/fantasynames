@@ -24,7 +24,7 @@ But right now this transformation is just a dictionary -- it doesn't do anything
 
 ## 1. Define the transformations
 
-Let's walk through how we might add transformations to the snake language we made in the [How to Add a New Name Generator Guide](new-generator-guide.md). First, we need to decide what these transformations will be. Let's revisit one of the tables we created:
+Let's walk through how we might add transformations to the snake language we made in the [How to Add a New names Generator Guide](new-generator-guide.md). First, we need to decide what these transformations will be. Let's revisit one of the tables we created:
 
 | name1_col1 | name1_col2 |
 |------------|------------|
@@ -127,23 +127,24 @@ Here's how the file will look:
 
 ```python
 # snake.py
-from fantasynames.language import Language
+from fantasynames.languages.language import Language
 from fantasynames.data import snake_data
 
+
 class Snake(Language):
-    transformations = snake_data["transformations"] # <--- this is what we added!
+    transformations = snake_data["transformations"]  # <--- this is what we added!
 
     @classmethod
-    def _name1_male(cls) -> str:
-        return cls._name_from_lists([snake_data["name1_col1"], snake_data["name1_col2"]])
+    def _name1_male(self) -> str:
+        return self._name_from_lists([snake_data["name1_col1"], snake_data["name1_col2"]])
 
     @classmethod
-    def _name1_female(cls) -> str:
-        return cls._name1_male()
+    def _name1_female(self) -> str:
+        return self._name1_male()
 
     @classmethod
-    def _name2(cls) -> str:
-        return cls._name_from_lists([snake_data["name2_col1"], snake_data["name2_col2"]])
+    def _name2(self) -> str:
+        return self._name_from_lists([snake_data["name2_col1"], snake_data["name2_col2"]])
 ```
 
 Now whenever we call `Snake.name()`, it will _automatically_ apply these tranformations to both the first and last names.

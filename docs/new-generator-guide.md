@@ -1,4 +1,4 @@
-# How to Add a New Name Generator
+# How to Add a New names Generator
 
 ## 1. Come up with some tables
 
@@ -45,48 +45,52 @@ Our snake name generator will be subclassed from the `Language` class, which com
 
 ```python
 # snake.py
-from fantasynames.language import Language
+from fantasynames.languages.language import Language
+
 
 class Snake(Language):
 
     @classmethod
-    def _name1_male(cls) -> str:
-        # this should return a male first name
+    def _name1_male(self) -> str:
+
+    # this should return a male first name
 
     @classmethod
-    def _name1_female(cls) -> str:
-        # this should return a female first name
+    def _name1_female(self) -> str:
+
+    # this should return a female first name
 
     @classmethod
-    def _name2(cls) -> str:
-        # this should return a surname
+    def _name2(self) -> str:
+# this should return a surname
 
 ```
 
 ## 4. Write name generating logic
 
-Let's flesh out those methods in `snake.py`. We want them to randomly pull from the tables we defined in `data.py` -- luckily, since this is an operation we do frequently in this codebase, there's already a helper method baked into the class to make this easier! If you pass `cls._name_from_lists` a list of lists, it will randomly select a string from each one and give you the combined result.
+Let's flesh out those methods in `snake.py`. We want them to randomly pull from the tables we defined in `data.py` -- luckily, since this is an operation we do frequently in this codebase, there's already a helper method baked into the class to make this easier! If you pass `self._name_from_lists` a list of lists, it will randomly select a string from each one and give you the combined result.
 
 For simplicity, let's say these snake people don't have gendered names. So `_name1_female()` will just return the same thing as `_name1_male()`.
 
 ```python
 # snake.py
-from fantasynames.language import Language
+from fantasynames.languages.language import Language
 from fantasynames.data import snake_data
+
 
 class Snake(Language):
 
     @classmethod
-    def _name1_male(cls) -> str:
-        return cls._name_from_lists([snake_data["name1_col1"], snake_data["name1_col2"]])
+    def _name1_male(self) -> str:
+        return self._name_from_lists([snake_data["name1_col1"], snake_data["name1_col2"]])
 
     @classmethod
-    def _name1_female(cls) -> str:
-        return cls._name1_male()
+    def _name1_female(self) -> str:
+        return self._name1_male()
 
     @classmethod
-    def _name2(cls) -> str:
-        return cls._name_from_lists([snake_data["name2_col1"], snake_data["name2_col2"]])
+    def _name2(self) -> str:
+        return self._name_from_lists([snake_data["name2_col1"], snake_data["name2_col2"]])
 ```
 
 Now our name generator is fully functional! Because these are [class methods](https://pythonbasics.org/classmethod/), we don't even need to instantiate the class to use it. We can just call `Snake.name()` and it'll use the methods we just defined to give us the kind of outputs we wanted: `Silisus Poisonfang`, `Ssela Bloodscale`, `Ssisasa Deathtongue`, etc.
@@ -99,13 +103,16 @@ The users of this library won't have easy access to this method until we add an 
 
 ```python
 # snake.py
-from fantasynames.language import Language
+from fantasynames.languages.language import Language
 from fantasynames.data import snake_data
 
-class Snake(Language):
-    # content removed for brevity
 
-snake = Snake.name() # <-- this is what we're adding
+class Snake(Language):
+
+
+# content removed for brevity
+
+snake = Snake.name()  # <-- this is what we're adding
 ```
 
 Then we can import it in `__init__.py` like this:

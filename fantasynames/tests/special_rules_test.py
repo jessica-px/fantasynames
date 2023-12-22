@@ -1,30 +1,30 @@
-from fantasynames.language import Language
+from fantasynames.gender import Gender
+from fantasynames.languages.language import Language
+
 
 # This file test to make sure capitalization and special transformation
 # rules are applied as expected.
 
 
 class TestLanguage(Language):
-    @classmethod
-    def _name1_male(cls) -> str:
+
+    def first_name_male(self) -> str:
         return "bob*y"
 
-    @classmethod
-    def _name1_female(cls) -> str:
+    def first_name_female(self) -> str:
         return "jack*y"
 
-    @classmethod
-    def _name2(cls) -> str:
+    def last_name(self) -> str:
         return "the brave d'blanche"
 
 
 def test_male_name():
-    name = TestLanguage.name("male")
+    name = TestLanguage.name(Gender.MALE)
     assert name == "Bobby the Brave d'Blanche"
 
 
 def test_female_name():
-    name = TestLanguage.name("female")
+    name = TestLanguage.name(Gender.FEMALE)
     assert name == "Jacky the Brave d'Blanche"
 
 

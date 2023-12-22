@@ -1,4 +1,4 @@
-# Fantasy Name Generator
+# Fantasy names Generator
 
 [![PyPI version](https://badge.fury.io/py/fantasynames.svg)](https://badge.fury.io/py/fantasynames)
 
@@ -79,7 +79,7 @@ poetry run pytest
 ### Guides
 
 If you want to make your own name generators, check out:
-- [How to Add a New Name Generator Guide](docs/new-generator-guide.md)
+- [How to Add a New names Generator Guide](docs/new-generator-guide.md)
 
 And then if you want to ramp up the complexity, take a look at:
 - [Transformation Guide](docs/transformation-guide.md)
