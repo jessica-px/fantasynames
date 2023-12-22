@@ -11,7 +11,11 @@ class Language(ABC):
     transformations: list[dict] = []
 
     def __init__(self):
-        self.gender_to_name1_method: dict[Gender, Callable]
+        self.gender_to_first_name_method: dict[Gender, Callable[[], str]] = {
+            Gender.MALE: self.first_name_male,
+            Gender.FEMALE: self.first_name_female,
+            Gender.ANY: self.first_name_any,
+        }
 
     def __call__(self, gender: Gender = Gender.ANY):
         return self.name(gender)
@@ -21,7 +25,7 @@ class Language(ABC):
         Returns a randomly generated first and last name. This is the only method
         that we intend to be "publicly" used outside of this package.
         """
-        name = f'{self.first_name(gender)} {self.last_name()}'
+        name = f"{self.first_name(gender)} {self.last_name()}"
         transformed_name = self._transform(name)
         caps_name = Language._capitalize(transformed_name)
         return caps_name
@@ -31,15 +35,8 @@ class Language(ABC):
         Returns a randomly generated first name with variable gender.
         By default, randomly chooses either masculine or feminine.
         """
-        if gender == Gender.FEMALE:
-            return self.first_name_female()
-        elif gender == Gender.MALE:
-            return self.first_name_male()
-        elif gender == Gender.ANY:
-            return self.first_name_any()
-        raise ValueError(
-            f'Valid string parameters for name generating functions are Gender.FEMALE, Gender.MALE, or Gender.ANY. '
-            f'The given value was the {type(gender).__name__} "{gender}".')
+        name_generator = self.gender_to_first_name_method[gender]
+        return name_generator()
 
     @abstractmethod
     def first_name_female(self) -> str:

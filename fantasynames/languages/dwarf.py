@@ -14,7 +14,7 @@ class Dwarf(Language):
     def first_name_female(self) -> str:
         # 50% to add "-a" to a male name
         if random.random() * 100 < 50:
-            return f'{self.first_name_male()}a'
+            return f"{self.first_name_male()}a"
         # 50% chance to use female col for second half of name
         else:
             cols = [dwarf_data["name1_col1"], dwarf_data["name1_col2_female"]]

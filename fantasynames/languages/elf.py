@@ -21,7 +21,11 @@ class Elf(Language):
         """
         50% chance of elf-y surname or nature-y surname
         """
-        cols = random.choice([[compound_tables["nature_col1"], compound_tables["nature_col2"]],
-                              [elf_data["name1_col1"], elf_data["name2_col2"]]])
+        cols = random.choice(
+            [
+                [compound_tables["nature_col1"], compound_tables["nature_col2"]],
+                [elf_data["name1_col1"], elf_data["name2_col2"]],
+            ]
+        )
         name = Language._name_from_lists(cols)
         return name

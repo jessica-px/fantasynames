@@ -35,4 +35,4 @@ class French(Language):
         cols = [french_data["name2_col1"], french_data["name2_col2"]]
         name = Language._name_from_lists(cols)
         optional_prefix = random.choice(french_data["name2_prefixes"])
-        return choice([name, f'{optional_prefix}{name}'], p=[0.7, 0.3])
+        return choice([name, f"{optional_prefix}{name}"], p=[0.7, 0.3])

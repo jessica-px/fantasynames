@@ -37,4 +37,4 @@ class Anglo(Language):
         """
         cols = [anglo_data["name2_col1"], anglo_data["name2_col2"]]
         name = Language._name_from_lists(cols)
-        return random.choice([f'of {name}', name])
+        return random.choice([f"of {name}", name])

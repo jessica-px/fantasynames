@@ -27,9 +27,9 @@ class Human(LanguageDiverse):
 
     def last_name(self) -> str:
         """
-         25% chance of anglo surname
-         25% chance of french surname
-         50% chance surname is cobbled together from various tables
+        25% chance of anglo surname
+        25% chance of french surname
+        50% chance surname is cobbled together from various tables
         """
         name = self.get_rand_lang(is_first_name=False).last_name()
         if random.random() < 0.5:

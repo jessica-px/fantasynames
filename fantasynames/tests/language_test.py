@@ -24,7 +24,9 @@ class TestLanguage(Language):
         return Language._name_from_lists(cols)
 
     def first_name_female(self) -> str:
-        name = self.first_name_male() + Language._name_from_lists([name1_female_suffixes])
+        name = self.first_name_male() + Language._name_from_lists(
+            [name1_female_suffixes]
+        )
         return name
 
     def last_name(self) -> str:
