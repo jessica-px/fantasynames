@@ -1,4 +1,4 @@
-# Fantasy names Generator
+# Fantasy Name Generator
 
 [![PyPI version](https://badge.fury.io/py/fantasynames.svg)](https://badge.fury.io/py/fantasynames)
 
