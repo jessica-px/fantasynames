@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "fantasynames"
-version = "0.1.2"
+version = "0.2.0b1"
 description="A fantasy themed random name generator."
-authors = ["Jessica Peck <jessypeck@gmail.com>"]
+authors = ["Jessica Peck <jessypeck@gmail.com>", "Galit Dotan <galitdotan99@gmail.com>"]
 homepage = "https://github.com/jessypeck/fantasynames"
 repository = "https://github.com/jessypeck/fantasynames"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 black = "^20.8b1"
 flake8 = "^3.9.0"
 mypy = "^0.812"
