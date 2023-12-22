@@ -10,14 +10,14 @@ name1_female_suffixes = ["a"]
 name2_col1 = ["Ux"]
 name2_col2 = ["tUn"]
 
-test_tranformations = [
+test_transformations = [
     {"input": "Y", "outputs": ["e"]},
     {"input": "U", "outputs": ["o"]},
 ]
 
 
 class TestLanguage(Language):
-    transformations = test_tranformations
+    transformations = test_transformations
 
     def first_name_male(self) -> str:
         cols = [name1_col1, name1_col2]
