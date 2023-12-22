@@ -1,88 +1,79 @@
-from abc import ABC, abstractmethod
-import typing as t
 import random
+from abc import ABC, abstractmethod
+from typing import Callable
+
+from fantasynames.gender import Gender
+
+NOT_TO_UPPERCASE = ["of", "du", "del", "de", "la", "von", "the"]
 
 
 class Language(ABC):
-    transformations: t.List[t.Dict] = []
+    transformations: list[dict] = []
 
-    @classmethod
-    def name(cls, gender: str = "any") -> str:
+    def __init__(self):
+        self.gender_to_first_name_method: dict[Gender, Callable[[], str]] = {
+            Gender.MALE: self.first_name_male,
+            Gender.FEMALE: self.first_name_female,
+            Gender.ANY: self.first_name_any,
+        }
+
+    def __call__(self, gender: Gender = Gender.ANY):
+        return self.name(gender)
+
+    def name(self, gender: Gender = Gender.ANY) -> str:
         """
         Returns a randomly generated first and last name. This is the only method
         that we intend to be "publicly" used outside of this package.
         """
-        name = cls._name1(gender) + " " + cls._name2()
-        transformed_name = cls._transform(name)
-        caps_name = cls._capitalize(transformed_name)
+        name = f"{self.first_name(gender)} {self.last_name()}"
+        transformed_name = self._transform(name)
+        caps_name = Language._capitalize(transformed_name)
         return caps_name
 
-    @classmethod
-    def _name1(cls, gender: str = "any") -> str:
+    def first_name(self, gender: Gender = Gender.ANY) -> str:
         """
         Returns a randomly generated first name with variable gender.
         By default, randomly chooses either masculine or feminine.
         """
-        if gender == "female":
-            name = cls._name1_female()
-        elif gender == "male":
-            name = cls._name1_male()
-        elif gender == "any":
-            name = cls._name1_any()
-        else:
-            msg = (
-                "Valid string parameters for name generating functions are "
-                '"female", "male", or "any". The given value was the '
-                f'{type(gender).__name__} "{gender}".'
-            )
-            raise ValueError(msg)
+        name_generator = self.gender_to_first_name_method[gender]
+        return name_generator()
 
-        return name
-
-    @classmethod
     @abstractmethod
-    def _name1_female(cls) -> str:
+    def first_name_female(self) -> str:
         """
         Expected to return a random 'feminine' first name. Must be overridden.
         """
         pass
 
-    @classmethod
     @abstractmethod
-    def _name1_male(cls) -> str:
+    def first_name_male(self) -> str:
         """
         Expected to return a random 'masculine' first name. Must be overridden.
         """
         pass
 
-    @classmethod
-    def _name1_any(cls) -> str:
+    def first_name_any(self) -> str:
         """
         Randomly returns either a masculine or feminine first name (50/50 chance).
         """
-        if random.random() * 100 < 50:
-            return cls._name1_male()
-        else:
-            return cls._name1_female()
+        return random.choice([self.first_name_male(), self.first_name_female()])
 
-    @classmethod
     @abstractmethod
-    def _name2(cls) -> str:
+    def last_name(self) -> str:
         """
         Expected to return a random surname. Must be overridden.
         """
         pass
 
-    @classmethod
-    def _transform(cls, name: str) -> str:
+    def _transform(self, name: str) -> str:
         """
         Given a string, loops over each char. If 'input' is present in the
-        cls.transformations dict, "replaces" it with a randomly
+        `cls.transformations` dict, "replaces" it with a randomly
         selected character from the dict. Returns a new string with the newly
         replaced chars. (No actual mutations performed.)
 
         Also has the following special rules for special "input" characters:
-            - *: doubles previous char if not preceeded by a CVC pattern
+            - *: doubles previous char if not preceded by a CVC pattern
         """
         new_string = ""
         for char in name:
@@ -90,22 +81,22 @@ class Language(ABC):
             prev_char = new_string[-1] if len(new_string) > 0 else ""
             prev_prev_char = new_string[-2] if len(new_string) > 1 else ""
 
-            # "*" doubles previous char if not preceeded by a CVC pattern
+            # "*" doubles previous char if not preceded by a CVC pattern
             # Ex: 'wil' + '*and' -> "willand", "wald" + '*and' -> 'waldan'
             if char == "*":
-                if double_consonant(new_string):
+                if _double_consonant(new_string):
                     new_char = prev_char
                 else:
                     new_char = ""
             # "&" removes preceeding char if it's preceeded by a consontant
             # Ex: 'ia' + 'l&er' -> 'ialer', 'sand' + 'l&er' -> 'sander'
             if char == "&":
-                if is_vowel(prev_prev_char):
+                if _is_vowel(prev_prev_char):
                     new_char = ""
                 else:
                     new_string = new_string[:-1]
                     new_char = ""
-            # "#" removes preceeding char unless it's preceeded by a plosive
+            # "#" removes preceding char unless it's preceded by a plosive
             # Ex: 'and' + 'r#e' -> 'andre', 'sir' + 'r#e' -> 'sire'
             if char == "#":
                 if prev_prev_char in "pbdtkgc":
@@ -114,7 +105,7 @@ class Language(ABC):
                     new_string = new_string[:-1]
                     new_char = ""
             # checks is character is in given transformations
-            for transformation in cls.transformations:
+            for transformation in self.transformations:
                 if char == transformation["input"]:
                     new_char = random.choice(transformation["outputs"])
                     break
@@ -126,7 +117,7 @@ class Language(ABC):
         caps_list = []
         for word in name.split():
             # leave particles lowercase
-            if word in ["of", "du", "del", "de", "la", "von", "the"]:
+            if word in NOT_TO_UPPERCASE:
                 caps_list.append(word)
             # handle d'
             elif word[:2] == "d'":
@@ -138,7 +129,7 @@ class Language(ABC):
         return " ".join(caps_list)
 
     @classmethod
-    def _name_from_lists(cls, lists: t.List[t.List[str]]) -> str:
+    def _name_from_lists(cls, lists: list[list[str]]) -> str:
         """
         Given one or more list of strings, randomly selects a string from each
         and returns the concatenated result.
@@ -154,24 +145,26 @@ class Language(ABC):
 # ----------------------
 
 
-def is_vowel(char: str) -> bool:
+def _is_vowel(char: str) -> bool:
     vowels = ["a", "e", "i", "o", "u"]
     return char in vowels
 
 
-def double_consonant(string: str) -> bool:
-    # the "double consonat rule" means that if the chars preceeding a special character
-    # ("*" in our case) match a consonant-vowel-consonant pattern, we double the
-    # final consonant. This helper function tests for that pattern.
-    # Examples if true: bob*y -> bobby, rin*e -> rinne
-    # Examples if false: rick*y -> ricky, wood*y -> woody
+def _double_consonant(string: str) -> bool:
+    """
+    The "double consonant rule" means that if the chars preceding a special character
+    ("*" in our case) match a consonant-vowel-consonant pattern, we double the
+    final consonant. This helper function tests for that pattern.
+    Examples if true: bob*y -> bobby, rin*e -> rinne
+    Examples if false: rick*y -> ricky, wood*y -> woody
+    """
     if len(string) < 3:
         return True
 
     prev_chars = string[-3:]
     pattern = ""
     for char in prev_chars:
-        if is_vowel(char):
+        if _is_vowel(char):
             pattern += "V"
         else:
             pattern += "C"
