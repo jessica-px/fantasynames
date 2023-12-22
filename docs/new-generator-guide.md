@@ -1,4 +1,4 @@
-# How to Add a New names Generator
+# How to Add a New Name Generator
 
 ## 1. Come up with some tables
 
